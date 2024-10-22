@@ -2,16 +2,23 @@ package com.example.cinekids.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
-@Table(name = "sala")
+@Table(name = "sale")
 public class Sala {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     @Column(name = "citta", nullable = false)
     private String citta;
+
     @Column(name = "nome_sala", nullable = false)
     private String nomeSala;
+
+    @OneToMany(mappedBy = "sala", cascade = CascadeType.ALL)
+    private List<Proiezione> proiezioni;
 
     public int getId() {
         return id;
@@ -35,5 +42,13 @@ public class Sala {
 
     public void setNomeSala(String nomeSala) {
         this.nomeSala = nomeSala;
+    }
+
+    public List<Proiezione> getProiezioni() {
+        return proiezioni;
+    }
+
+    public void setProiezioni(List<Proiezione> proiezioni) {
+        this.proiezioni = proiezioni;
     }
 }

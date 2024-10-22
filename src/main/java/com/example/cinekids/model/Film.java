@@ -2,8 +2,10 @@ package com.example.cinekids.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
-@Table(name = "film")
+@Table(name = "films")
 public class Film {
 
     @Id
@@ -24,6 +26,9 @@ public class Film {
 
     @Column(name = "locandina", nullable = false)
     private String locandina;
+
+    @OneToMany(mappedBy = "film", cascade = CascadeType.ALL)
+    private List<Proiezione> proiezioni;
 
     public int getId() {
         return id;
@@ -71,5 +76,13 @@ public class Film {
 
     public void setLocandina(String locandina) {
         this.locandina = locandina;
+    }
+
+    public List<Proiezione> getProiezioni() {
+        return proiezioni;
+    }
+
+    public void setProiezioni(List<Proiezione> proiezioni) {
+        this.proiezioni = proiezioni;
     }
 }
