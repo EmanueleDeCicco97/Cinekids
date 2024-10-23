@@ -6,25 +6,25 @@
     <meta name="description" content="1° Festival Cinekids - Proiezione di celebri pellicole con protagonisti bambini e ragazzi">
     <title>Festival Cinekids</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="homepage.css"> 
+    <link rel="stylesheet" href="homepage.css">
     <style>
         .card {
-            width: 100%; 
-            max-width: 600px; 
-            margin: 0 auto; 
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
         }
         .card-body {
-            padding: 20px; 
+            padding: 20px;
         }
         .card-title {
-            font-size: 24px; 
+            font-size: 24px;
         }
         .card-text {
-            font-size: 16px; 
+            font-size: 16px;
         }
         .card img {
-            max-height: 400px; 
-            object-fit: cover; 
+            max-height: 400px;
+            object-fit: cover;
         }
     </style>
 </head>
@@ -67,17 +67,21 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <img src="IT.jpg" class="card-img-top" alt="Locandina IT">
+                    <img th:src="@{${film.locandina}}" class="card-img-top" alt="Locandina di [[${film.titolo}]]">
                     <div class="card-body">
-                        <h5 class="card-title">IT</h5>
-                        <p class="card-text"><strong>Regista:</strong> Andy Muschietti</p>
-                        <p class="card-text"><strong>Genere:</strong> Horror</p>
-                        <p class="card-text"><strong>Trama:</strong> Un gruppo di ragazzi deve affrontare le loro paure più profonde quando si trovano faccia a faccia con un'entità malvagia che prende la forma di un clown chiamato Pennywise. Il male li perseguita, alimentandosi delle loro paure e traumi.</p>
+                        <h5 class="card-title" th:text="${film.titolo}">Titolo Film</h5>
+                        <p class="card-text"><strong>Regista:</strong> <span th:text="${film.regista}">Nome Regista</span></p>
+                        <p class="card-text"><strong>Genere:</strong> <span th:text="${film.genere}">Genere</span></p>
+                        <p class="card-text"><strong>Trama:</strong> <span th:text="${film.sinossi}">Sinossi</span></p>
+                        <p class="card-text"><strong>Data:</strong>
+                            <span th:each="data : ${film.dateProiezione}" th:text="${data}"></span>
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
 
     <footer class="bg-dark text-white text-center py-3">
         <div class="container">
