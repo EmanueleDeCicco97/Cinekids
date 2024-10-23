@@ -6,6 +6,7 @@ import com.example.cinekids.model.Proiezione;
 import com.example.cinekids.model.Sala;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -51,5 +52,24 @@ public class ProiezioneServiceImpl implements ProiezioneService {
     public List<Proiezione> elencoProiezioniByFilm(Film film) {
         return proiezioneDao.findByFilm(film);
     }
+
+    @Override
+    public void creaProiezioniPerTutteLeSale(Film film, MultipartFile multipartFile, LocalDateTime dataOra) {
+
+        filmService.insericiFilm(film, multipartFile);
+
+        // recupero tutte le sale
+        List<Sala> sale = salaService.elencoSala();
+
+        // creo una proiezione per ogni sala
+        for (Sala sala : sale) {
+            Proiezione proiezione = new Proiezione();
+            proiezione.setFilm(film);
+            proiezione.setSala(sala);
+            proiezione.setDataOra(dataOra);
+            proiezioneDao.save(proiezione);
+        }
+    }
+
 
 }

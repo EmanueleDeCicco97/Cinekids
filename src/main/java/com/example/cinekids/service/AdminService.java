@@ -1,6 +1,7 @@
 package com.example.cinekids.service;
 
 import com.example.cinekids.model.Admin;
+import jakarta.servlet.http.HttpSession;
 
 public interface AdminService {
     public Admin dettaglioAdmin(int idAdmin);
@@ -8,4 +9,6 @@ public interface AdminService {
     public void inserisciAdmin(Admin admin);
 
     public void eliminaAdmin(int idAdmin);
+
+    public boolean loginUtente(String email, String password, HttpSession session);
 }

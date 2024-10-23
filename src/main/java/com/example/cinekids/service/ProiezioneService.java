@@ -2,6 +2,7 @@ package com.example.cinekids.service;
 
 import com.example.cinekids.model.Film;
 import com.example.cinekids.model.Proiezione;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -17,4 +18,6 @@ public interface ProiezioneService {
     public void eliminaProiezione(int idProiezione);
 
     List<Proiezione> elencoProiezioniByFilm(Film film);
+
+    public void creaProiezioniPerTutteLeSale(Film film, MultipartFile multipartFile, LocalDateTime dataOra);
 }
