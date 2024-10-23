@@ -17,11 +17,11 @@ public class FilmServiceImpl implements FilmService {
     @Autowired
     private FilmDao filmDao;
 
-    @Autowired
-    private SalaService salaService;
-
-    @Autowired
-    private ProiezioneService proiezioneService;
+//    @Autowired
+//    private SalaService salaService;
+//
+//    @Autowired
+//    private ProiezioneService proiezioneService;
 
     @Override
     public Film dettaglioFilm(int idFilm) {
@@ -45,17 +45,19 @@ public class FilmServiceImpl implements FilmService {
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
+        }else{
+            film.setLocandina("/static/markerImage.png");
         }
 
         filmDao.save(film);
 
         // ricavo tutte le sale per associare il film aggiunto a esse
-        List<Sala> sale = salaService.elencoSala();
-        for (Sala sala : sale) {
-            Proiezione proiezione = new Proiezione();
-            proiezione.setData(data);
-            proiezioneService.inserisciProiezione(proiezione, film.getId(), sala.getId());
-        }
+//        List<Sala> sale = salaService.elencoSala();
+//        for (Sala sala : sale) {
+//            Proiezione proiezione = new Proiezione();
+//            proiezione.setData(data);
+//            proiezioneService.inserisciProiezione(proiezione, film.getId(), sala.getId());
+//        }
     }
 
     @Override
