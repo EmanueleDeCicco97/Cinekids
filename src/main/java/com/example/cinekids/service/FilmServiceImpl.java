@@ -28,7 +28,7 @@ public class FilmServiceImpl implements FilmService {
     }
 
     @Override
-    public void insericiFilm(Film film, LocalDate data, MultipartFile locandina) {
+    public void insericiFilm(Film film, MultipartFile locandina) {
 
         if (locandina != null && !locandina.isEmpty()) {
             try {
@@ -40,7 +40,7 @@ public class FilmServiceImpl implements FilmService {
                 System.out.println(e.getMessage());
             }
         } else {
-            film.setLocandina("/static/markerImage.png");
+            film.setLocandina("/markerImage.png");
         }
 
         filmDao.save(film);

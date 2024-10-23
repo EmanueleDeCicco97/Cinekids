@@ -2,7 +2,6 @@ package com.example.cinekids.model;
 
 import jakarta.persistence.*;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -11,8 +10,8 @@ public class Proiezione {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(name = "data")
-    private LocalDateTime data;
+    @Column(name = "data_ora")
+    private LocalDateTime dataOra;
 
     @ManyToOne
     @JoinColumn(name = "fk_id_film", nullable = false)
@@ -30,12 +29,12 @@ public class Proiezione {
         this.id = id;
     }
 
-    public LocalDateTime getData() {
-        return data;
+    public LocalDateTime getDataOra() {
+        return dataOra;
     }
 
-    public void setData(LocalDateTime data) {
-        this.data = data;
+    public void setDataOra(LocalDateTime data) {
+        this.dataOra = data;
     }
 
     public Film getFilm() {

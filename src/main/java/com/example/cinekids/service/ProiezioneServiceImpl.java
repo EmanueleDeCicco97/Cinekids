@@ -7,6 +7,7 @@ import com.example.cinekids.model.Sala;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -32,9 +33,10 @@ public class ProiezioneServiceImpl implements ProiezioneService {
     }
 
     @Override
-    public void inserisciProiezione(Proiezione proiezione, int idFilm, int idSala) {
+    public void inserisciProiezione(Proiezione proiezione, LocalDateTime dataOra, int idFilm, int idSala) {
         Film film = filmService.dettaglioFilm(idFilm);
         Sala sala = salaService.dettaglioSala(idSala);
+        proiezione.setDataOra(dataOra);
         proiezione.setFilm(film);
         proiezione.setSala(sala);
         proiezioneDao.save(proiezione);

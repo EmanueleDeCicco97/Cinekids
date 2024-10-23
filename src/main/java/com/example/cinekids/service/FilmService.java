@@ -11,7 +11,7 @@ public interface FilmService {
 
     public List<Film> elencoFilm();
 
-    public void insericiFilm(Film film, LocalDate data, MultipartFile locandina);
+    public void insericiFilm(Film film, MultipartFile locandina);
 
     public void eliminaFilm(int idFilm);
 }

@@ -90,7 +90,7 @@
                         </thead>
                         <tbody>
                         <tr th:each="proiezione : ${proiezioni}">
-                            <td th:text="${#temporals.format(proiezione.data, 'dd/MM/yyyy HH:mm')}"></td>
+                            <td th:text="${#temporals.format(proiezione.dataOra, 'dd/MM/yyyy HH:mm')}"></td>
                         </tr>
                         </tbody>
                     </table>
