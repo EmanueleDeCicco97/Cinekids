@@ -12,17 +12,9 @@ public class Admin {
     private int id;
 
     @Column(name = "email", nullable = false)
-    @Pattern(
-            regexp = "^[\\w\\.-]+@[\\w\\.-]+\\.[a-zA-Z]{2,30}$",
-            message = "Formato email non valido. Esempio di email valida: esempio@email.com"
-    )
     private String email;
 
     @Column(name = "password", nullable = false)
-    @Pattern(
-            regexp = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[\\-\\.,\\$àèìòù])[A-Za-z\\d\\-\\.,\\$àèìòù]+$",
-            message = "La password deve contenere almeno una lettera, un numero e un carattere speciale tra: -.,$àèìòù. Esempio di password valida: Pa$$w0rdàè."
-    )
     private String password;
 
     public int getId() {

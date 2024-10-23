@@ -14,14 +14,13 @@ public class Suggerimento {
     private int id;
 
     @Column(name = "email", nullable = false)
-    @Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,30}$", message = "Formato email non valido (MarioRossi@gmail.com)")
     private String email;
 
     @Column(name = "titolo_film", nullable = false)
-    private String titolo_film;
+    private String titoloFilm;
 
     @Column(name = "data_invio")
-    private LocalDateTime data_invio;
+    private LocalDateTime dataInvio;
 
     public int getId() {
         return id;
@@ -31,27 +30,27 @@ public class Suggerimento {
         this.id = id;
     }
 
-    public @Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,30}$", message = "Formato email non valido (MarioRossi@gmail.com)") String getEmail() {
+    public String getEmail() {
         return email;
     }
 
-    public void setEmail(@Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,30}$", message = "Formato email non valido (MarioRossi@gmail.com)") String email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 
-    public String getTitolo_film() {
-        return titolo_film;
+    public String getTitoloFilm() {
+        return titoloFilm;
     }
 
-    public void setTitolo_film(String titolo_film) {
-        this.titolo_film = titolo_film;
+    public void setTitoloFilm(String titoloFilm) {
+        this.titoloFilm = titoloFilm;
     }
 
-    public LocalDateTime getData_invio() {
-        return data_invio;
+    public LocalDateTime getDataInvio() {
+        return dataInvio;
     }
 
-    public void setData_invio(LocalDateTime data_invio) {
-        this.data_invio = data_invio;
+    public void setDataInvio(LocalDateTime dataInvio) {
+        this.dataInvio = dataInvio;
     }
 }

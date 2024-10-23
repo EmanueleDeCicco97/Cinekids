@@ -24,9 +24,13 @@ public class SuggerimentoServiceImpl implements SuggerimentoService {
     }
 
     @Override
-    public void inserisciSuggerimento(Suggerimento suggerimento) {
-        suggerimentoDao.save(suggerimento);
-
+    public boolean inserisciSuggerimento(Suggerimento suggerimento) {
+        if (suggerimentoDao.existsByEmailAndDataInvio(suggerimento.getEmail(), suggerimento.getDataInvio()) == null) {
+            suggerimentoDao.save(suggerimento);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override

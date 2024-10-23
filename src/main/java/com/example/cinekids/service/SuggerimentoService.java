@@ -9,7 +9,7 @@ public interface SuggerimentoService {
 
     public List<Suggerimento> elencoSuggerimento();
 
-    public void inserisciSuggerimento(Suggerimento suggerimento);
+    public boolean inserisciSuggerimento(Suggerimento suggerimento);
 
     public void eliminaSuggerimento(int idSuggerimento);
 }

@@ -24,6 +24,9 @@
                 <div th:if="${admin != null}">
                     <a href="/logout" class="text-white">Logout</a>
                 </div>
+                <div th:if="${admin != null}">
+                    <a href="#" class="text-white" data-toggle="modal" data-target="#aggiungiAdminModal">Aggiungi admin</a>
+                </div>
                 <div th:if="${admin == null}">
                     <a href="#" class="text-white" data-toggle="modal" data-target="#adminModal">Area Admin</a>
                 </div>
@@ -48,9 +51,7 @@
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">Sale</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Sondaggio</a></li>
-                <li class="nav-item" th:if="${admin == null}"><a class="nav-link" href="#" data-toggle="modal" data-target="#adminModal">Admin</a></li>
-                <li class="nav-item" th:if="${admin != null}"><a class="nav-link" href="/logout">Logout</a></li>
+                <li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#suggerisciFilmModal">Sondaggio</a></li>
             </ul>
         </div>
     </div>
@@ -128,6 +129,59 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="aggiungiAdminModal" tabindex="-1" aria-labelledby="adminModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="aggiungiAdminModalLabel">Area Registrazione Admin</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="/register" method="POST">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="emailAdminNuovo" name="emailAdminNuovo" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="passwordAdminNuovo" name="passwordAdminNuovo" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Registra</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="suggerisciFilmModal" tabindex="-1" aria-labelledby="suggerisciFilmModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="suggerisciFilmModalLabel">Suggerisci un Film</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="/suggerimento" method="POST">
+                    <div class="form-group">
+                        <label for="titolo_film">Titolo del Film</label>
+                        <input type="text" class="form-control" id="titolo_film" name="titoloFilm" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email_suggerimento">La tua Email</label>
+                        <input type="email" class="form-control" id="email_suggerimento" name="emailSuggerimento" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Invia Suggerimento</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 
 <footer class="bg-dark text-white text-center py-3">
