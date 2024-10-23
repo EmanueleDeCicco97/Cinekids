@@ -1,10 +1,93 @@
-<html lang="en">
+<!DOCTYPE html>
+<html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="description" content="1° Festival Cinekids - Proiezione di celebri pellicole con protagonisti bambini e ragazzi">
+    <title>Festival Cinekids</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="homepage.css"> 
+    <style>
+        .card {
+            width: 100%; 
+            max-width: 600px; 
+            margin: 0 auto; 
+        }
+        .card-body {
+            padding: 20px; 
+        }
+        .card-title {
+            font-size: 24px; 
+        }
+        .card-text {
+            font-size: 16px; 
+        }
+        .card img {
+            max-height: 400px; 
+            object-fit: cover; 
+        }
+    </style>
 </head>
 <body>
-    
+
+    <header class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row justify-content-between align-items-center">
+                <div class="col-md-4">
+                    <h2>Logo</h2>
+                </div>
+                <div class="col-md-4 text-right">
+                    <a href="admin_login.html" class="text-white">Area Admin</a>
+                </div>
+            </div>
+            <div class="text-center">
+                <h1>1° Festival Cinekids</h1>
+                <p>Scopri le celebri pellicole con protagonisti bambini e ragazzi</p>
+            </div>
+        </div>
+    </header>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Sale</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Sondaggio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Admin</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <img src="IT.jpg" class="card-img-top" alt="Locandina IT">
+                    <div class="card-body">
+                        <h5 class="card-title">IT</h5>
+                        <p class="card-text"><strong>Regista:</strong> Andy Muschietti</p>
+                        <p class="card-text"><strong>Genere:</strong> Horror</p>
+                        <p class="card-text"><strong>Trama:</strong> Un gruppo di ragazzi deve affrontare le loro paure più profonde quando si trovano faccia a faccia con un'entità malvagia che prende la forma di un clown chiamato Pennywise. Il male li perseguita, alimentandosi delle loro paure e traumi.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white text-center py-3">
+        <div class="container">
+            <p>&copy; 2024 Festival Cinekids. Tutti i diritti riservati.</p>
+            <p><a href="admin_login.html" class="text-white">Login Admin</a></p>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
