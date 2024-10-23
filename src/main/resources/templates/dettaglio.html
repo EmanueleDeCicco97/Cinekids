@@ -69,7 +69,7 @@
     </div>
 </nav>
 
-<div class="container mt-5">
+<div class="container mt-5 mb-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -80,9 +80,21 @@
                     </p>
                     <p class="card-text"><strong>Genere:</strong> <span th:text="${film.genere}">Genere</span></p>
                     <p class="card-text"><strong>Trama:</strong> <span th:text="${film.sinossi}">Sinossi</span></p>
-                    <p class="card-text"><strong>Data:</strong>
-                        <span th:each="proiezione : ${proiezioni}" th:text="${#temporals.format(proiezione.data,  'dd/MM/yyyy HH:mm') + ' in tutte le sale'}"></span>
-                    </p>
+
+                    <p class="card-text"><strong>Proiezioni:</strong></p>
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th>Data e Ora</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="proiezione : ${proiezioni}">
+                            <td th:text="${#temporals.format(proiezione.data, 'dd/MM/yyyy HH:mm')}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <p class="card-text text-center">In tutte le sale presenti in Cinekids</p>
                 </div>
             </div>
         </div>
