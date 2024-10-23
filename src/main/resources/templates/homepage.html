@@ -31,6 +31,7 @@
         </div>
         <div class="text-center">
             <h1>1° Festival Cinekids</h1>
+            <h2 th:if="${admin != null}">Area amministrativa</h2>
             <p>Scopri le celebri pellicole con protagonisti bambini e ragazzi</p>
         </div>
     </div>
@@ -48,8 +49,8 @@
                 <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">Sale</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">Sondaggio</a></li>
-                <li class="nav-item"><a class="nav-link" href="#" data-toggle="modal"
-                                        data-target="#adminModal">Admin</a></li>
+                <li class="nav-item" th:if="${admin == null}"><a class="nav-link" href="#" data-toggle="modal" data-target="#adminModal">Admin</a></li>
+                <li class="nav-item" th:if="${admin != null}"><a class="nav-link" href="/logout">Logout</a></li>
             </ul>
         </div>
     </div>
