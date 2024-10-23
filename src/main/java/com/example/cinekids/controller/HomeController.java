@@ -14,7 +14,7 @@ import java.util.List;
 @RequestMapping()
 public class HomeController {
     @Autowired
-   private FilmService filmService;
+    private FilmService filmService;
 
     @GetMapping()
     public String gethome(Model model) {

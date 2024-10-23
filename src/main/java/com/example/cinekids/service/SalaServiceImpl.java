@@ -15,7 +15,7 @@ public class SalaServiceImpl implements SalaService {
 
     @Override
     public Sala dettaglioSala(int idSala) {
-        return  salaDao.findById(idSala).get();
+        return salaDao.findById(idSala).get();
     }
 
     @Override
@@ -29,7 +29,7 @@ public class SalaServiceImpl implements SalaService {
     }
 
     @Override
-    public void eliminaSala(int idSala) {  
+    public void eliminaSala(int idSala) {
         salaDao.deleteById(idSala);
     }
 }
