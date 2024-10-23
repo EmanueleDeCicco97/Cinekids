@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="1° Festival Cinekids - Proiezione di celebri pellicole con protagonisti bambini e ragazzi">
+    <meta name="description"
+          content="1° Festival Cinekids - Proiezione di celebri pellicole con protagonisti bambini e ragazzi">
     <title>Festival Cinekids</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="homepage.css">
@@ -13,15 +14,19 @@
             max-width: 600px;
             margin: 0 auto;
         }
+
         .card-body {
             padding: 20px;
         }
+
         .card-title {
             font-size: 24px;
         }
+
         .card-text {
             font-size: 16px;
         }
+
         .card img {
             max-height: 400px;
             object-fit: cover;
@@ -30,68 +35,70 @@
 </head>
 <body>
 
-    <header class="bg-dark text-white py-4">
-        <div class="container">
-            <div class="row justify-content-between align-items-center">
-                <div class="col-md-4">
-                    <h2>Logo</h2>
-                </div>
-                <div class="col-md-4 text-right">
-                    <a href="admin_login.html" class="text-white">Area Admin</a>
-                </div>
+<header class="bg-dark text-white py-4">
+    <div class="container">
+        <div class="row justify-content-between align-items-center">
+            <div class="col-md-4">
+                <h2>Logo</h2>
             </div>
-            <div class="text-center">
-                <h1>1° Festival Cinekids</h1>
-                <p>Scopri le celebri pellicole con protagonisti bambini e ragazzi</p>
+            <div class="col-md-4 text-right">
+                <a href="admin_login.html" class="text-white">Area Admin</a>
             </div>
         </div>
-    </header>
-
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav mx-auto">
-                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Sale</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Sondaggio</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Admin</a></li>
-                </ul>
-            </div>
+        <div class="text-center">
+            <h1>1° Festival Cinekids</h1>
+            <p>Scopri le celebri pellicole con protagonisti bambini e ragazzi</p>
         </div>
-    </nav>
+    </div>
+</header>
 
-    <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <img th:src="@{${film.locandina}}" class="card-img-top" alt="Locandina di [[${film.titolo}]]">
-                    <div class="card-body">
-                        <h5 class="card-title" th:text="${film.titolo}">Titolo Film</h5>
-                        <p class="card-text"><strong>Regista:</strong> <span th:text="${film.regista}">Nome Regista</span></p>
-                        <p class="card-text"><strong>Genere:</strong> <span th:text="${film.genere}">Genere</span></p>
-                        <p class="card-text"><strong>Trama:</strong> <span th:text="${film.sinossi}">Sinossi</span></p>
-                        <p class="card-text"><strong>Data:</strong>
-                            <span th:each="data : ${film.dateProiezione}" th:text="${data}"></span>
-                        </p>
-                    </div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Sale</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Sondaggio</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Admin</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <img th:src="@{${film.locandina}}" class="card-img-top" alt="Locandina di [[${film.titolo}]]">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${film.titolo}">Titolo Film</h5>
+                    <p class="card-text"><strong>Regista:</strong> <span th:text="${film.regista}">Nome Regista</span>
+                    </p>
+                    <p class="card-text"><strong>Genere:</strong> <span th:text="${film.genere}">Genere</span></p>
+                    <p class="card-text"><strong>Trama:</strong> <span th:text="${film.sinossi}">Sinossi</span></p>
+                    <p class="card-text"><strong>Data:</strong>
+                        <span th:each="proiezione : ${proiezioni}" th:text="${#temporals.format(proiezione.data,  'dd/MM/yyyy HH:mm') + ' in tutte le sale'}"></span>
+                    </p>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
 
-    <footer class="bg-dark text-white text-center py-3">
-        <div class="container">
-            <p>&copy; 2024 Festival Cinekids. Tutti i diritti riservati.</p>
-            <p><a href="admin_login.html" class="text-white">Login Admin</a></p>
-        </div>
-    </footer>
+<footer class="bg-dark text-white text-center py-3">
+    <div class="container">
+        <p>&copy; 2024 Festival Cinekids. Tutti i diritti riservati.</p>
+        <p><a href="admin_login.html" class="text-white">Login Admin</a></p>
+    </div>
+</footer>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -3,6 +3,7 @@ package com.example.cinekids.model;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "proiezioni")
@@ -11,14 +12,14 @@ public class Proiezione {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(name = "data")
-    private LocalDate data;
+    private LocalDateTime data;
 
     @ManyToOne
-    @JoinColumn(name = "film_id", nullable = false)
+    @JoinColumn(name = "fk_id_film", nullable = false)
     private Film film;
 
     @ManyToOne
-    @JoinColumn(name = "sala_id", nullable = false)
+    @JoinColumn(name = "fk_id_sala", nullable = false)
     private Sala sala;
 
     public int getId() {
@@ -29,11 +30,11 @@ public class Proiezione {
         this.id = id;
     }
 
-    public LocalDate getData() {
+    public LocalDateTime getData() {
         return data;
     }
 
-    public void setData(LocalDate data) {
+    public void setData(LocalDateTime data) {
         this.data = data;
     }
 

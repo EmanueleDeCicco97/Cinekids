@@ -44,4 +44,10 @@ public class ProiezioneServiceImpl implements ProiezioneService {
     public void eliminaProiezione(int idProiezione) {
         proiezioneDao.deleteById(idProiezione);
     }
+
+    @Override
+    public List<Proiezione> elencoProiezioniByFilm(Film film) {
+        return proiezioneDao.findByFilm(film);
+    }
+
 }
