@@ -1,9 +1,43 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0; /* Rimuove margini dal body */
+}
 
 #presentazione,
 #film {
     background-color: #f5e5c6 !important;
 }
 
+#presentazione {
+    width: 100vw; /* Larghezza del viewport */
+    margin-left: calc(-50vw + 50%); /* Allinea al centro */
+    padding: 0; /* Rimuove il padding per una larghezza totale */
+}
+
+.carousel {
+    height: 600px; /* Imposta l'altezza del carosello */
+}
+
+.carousel-inner img {
+    height: 600px; /* Aumenta l'altezza delle immagini del carousel */
+    object-fit: cover; /* Mantiene l'aspetto dell'immagine */
+}
+
+.carousel-caption {
+    background-color: rgba(0, 0, 0, 0.5); /* Sfondo semitrasparente */
+    color: white; /* Colore del testo */
+    padding: 10px; /* Padding intorno al testo */
+    left: 0; /* Allinea il contenuto a sinistra */
+    text-align: left; /* Allinea il testo a sinistra */
+}
+
+.carousel-caption h5 {
+    font-size: 2rem; /* Aumenta la dimensione del titolo */
+}
+
+.carousel-caption p {
+    font-size: 1.2rem; /* Aumenta la dimensione del paragrafo */
+}
 
 .custom-header {
     background-color: #57968f;
@@ -15,9 +49,9 @@
     color: white;
 }
 
-
 .custom-navbar {
     background-color: #3a4e4e;
+    margin-bottom: 0; /* Assicurati che la navbar non abbia margini inferiori */
 }
 
 .custom-navbar .nav-link {
@@ -30,7 +64,6 @@
     padding: 16px;
 }
 
-/* Stili delle cards */
 .card {
     position: relative;
     display: flex;
@@ -38,73 +71,65 @@
     height: 100%;
     cursor: pointer;
     transition: transform 0.3s;
-    max-width: 400px; /* Aumenta la larghezza massima delle cards */
-    margin: auto; /* Centrare le cards */
+    max-width: 400px;
+    margin: auto;
 }
 
-/* Effetto hover sulle cards */
 .card:hover {
-    transform: scale(1.08); /* Ingrandire leggermente al passaggio del mouse */
+    transform: scale(1.08);
 }
 
-/* Gestione delle immagini delle cards */
 .card-img-top {
     width: 100%;
-    height: auto;
-    max-height: 350px; /* Aumenta l'altezza massima delle immagini */
-    object-fit: contain; /* Visualizza l'immagine intera senza ritagliarla */
+    height: 100%; /* Rende l'immagine alta quanto la card */
+    object-fit: cover; /* Adatta l'immagine per coprire l'area senza spazi vuoti */
+    max-height: none; /* Permette all'immagine di occupare l'altezza intera della card */
 }
 
-/* Corpo della card che si espande */
 .card-body {
     flex-grow: 1;
 }
 
-/* Overlay delle cards */
 .card-overlay {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5); /* Sfondo scuro trasparente */
+    background-color: rgba(0, 0, 0, 0.5);
     opacity: 0;
     transition: opacity 0.3s;
 }
 
-/* L'overlay diventa visibile quando si passa con il mouse */
 .card:hover .card-overlay {
     opacity: 1;
 }
 
-/* Dettagli e pulsanti centrati al passaggio del mouse */
 .card-details {
     position: absolute;
-    top: 50%; /* Centrato verticalmente */
-    left: 50%; /* Centrato orizzontalmente */
-    transform: translate(-50%, -50%); /* Centratura perfetta */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     color: white;
     font-size: 1.2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    opacity: 0; /* Inizialmente invisibile */
+    opacity: 0;
     transition: opacity 0.3s;
 }
 
-/* Dettagli visibili al passaggio del mouse */
 .card:hover .card-details {
     opacity: 1;
 }
 
-/* Stili per i pulsanti nei dettagli delle cards */
 .card-details a {
-    margin: 5px 0; /* Spaziatura tra i pulsanti */
+    margin: 5px 0;
     text-decoration: none;
-    width: 100%; /* Pulsanti larghi quanto la card */
-    text-align: center; /* Testo centrato nei pulsanti */
-    color: white; /* Colore del testo nei pulsanti */
+    width: 100%;
+    text-align: center;
+    color: white;
 }
 
 .card-details a.btn-info {
@@ -119,12 +144,16 @@
     background-color: #dc3545;
 }
 
-/* Spazio tra le cards */
 .mb-4 {
-    margin-bottom: 2rem; /* Aumenta lo spazio tra le cards */
+    margin-bottom: 2rem;
 }
 
-/* Margine automatico in alto per l'allineamento verticale */
 .mt-auto {
     margin-top: auto;
 }
+
+/* Nuove regole per garantire che non ci sia spazio tra la navbar e il carosello */
+.carousel {
+    margin-top: 0; /* Assicurati che il carosello non abbia margini superiori */
+}
+
