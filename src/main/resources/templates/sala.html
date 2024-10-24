@@ -24,7 +24,7 @@
             </div>
             <div class="col-md-4 text-right">
                 <div th:if="${admin != null}">
-                    <a href="/logout?redirectUrl=${pageContext.request.requestURI}">Logout</a>
+                    <a href="/logout?redirectUrl=/sale" class="text-white">Logout</a>
                 </div>
                 <div th:if="${admin != null}">
                     <a href="#" class="text-white" data-toggle="modal" data-target="#aggiungiAdminModal">Aggiungi admin</a>
@@ -104,7 +104,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="/login" method="POST">
+                <form action="/login?redirectUrl=/sale" method="POST">
                     <div class="form-group">
                         <label for="email">Email</label>
                         <input type="email" class="form-control" id="email" name="email" required>
@@ -130,7 +130,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="/register" method="POST">
+                <form action="/register?redirectUrl=/sale" method="POST">
                     <div class="form-group">
                         <label for="email">Email</label>
                         <input type="email" class="form-control" id="emailAdminNuovo" name="emailAdminNuovo" required>
@@ -156,7 +156,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="/suggerimento" method="POST">
+                <form action="/suggerimento?redirectUrl=/sale" method="POST">
                     <div class="form-group">
                         <label for="titolo_film">Titolo del Film</label>
                         <input type="text" class="form-control" id="titolo_film" name="titoloFilm" required>

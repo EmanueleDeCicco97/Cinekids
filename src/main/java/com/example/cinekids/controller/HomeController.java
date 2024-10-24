@@ -43,36 +43,41 @@ public class HomeController {
     @PostMapping("/login")
     public String login(HttpSession session,
                         @RequestParam("email") String email,
-                        @RequestParam("password") String password) {
-        if (!adminService.loginUtente(email, password, session))
+                        @RequestParam("password") String password,
+                        @RequestParam(name = "redirectUrl", defaultValue = "/") String redirectUrl) {
+        if (!adminService.loginUtente(email, password, session)) {
             return "redirect:/?error";
-
-        return "redirect:/";
+        }
+        return "redirect:" + redirectUrl;
     }
 
     @GetMapping("/logout")
-    public String logoutAdmin(HttpSession session) {
+    public String logoutAdmin(HttpSession session,
+                              @RequestParam(name = "redirectUrl", defaultValue = "/") String redirectUrl) {
         session.removeAttribute("admin");
-        return "redirect:/";
+        return "redirect:" + redirectUrl;
     }
+
 
     @PostMapping("/register")
     public String registerAdmin(HttpSession session,
                                 @RequestParam("emailAdminNuovo") String email,
-                                @RequestParam("passwordAdminNuovo") String password) {
+                                @RequestParam("passwordAdminNuovo") String password,
+                                @RequestParam(name = "redirectUrl", defaultValue = "/") String redirectUrl) {
         Admin admin = new Admin();
         admin.setEmail(email);
         admin.setPassword(password);
 
         adminService.inserisciAdmin(admin);
 
-        return "redirect:/";
+        return "redirect:" + redirectUrl;
     }
 
     @PostMapping("/suggerimento")
     public String aggiungiSuggerimento(HttpSession session,
                                        @RequestParam("titoloFilm") String titolo,
-                                       @RequestParam("emailSuggerimento") String email) {
+                                       @RequestParam("emailSuggerimento") String email,
+                                       @RequestParam(name = "redirectUrl", defaultValue = "/") String redirectUrl) {
         Suggerimento suggerimento = new Suggerimento();
         suggerimento.setTitoloFilm(titolo);
         suggerimento.setEmail(email);
@@ -81,7 +86,7 @@ public class HomeController {
         if (!suggerimentoService.inserisciSuggerimento(suggerimento))
         return "redirect:/?errorSuggerimento";
 
-        return "redirect:/";
+        return "redirect:" + redirectUrl;
     }
 }
 
