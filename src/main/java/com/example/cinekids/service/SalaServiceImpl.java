@@ -36,8 +36,6 @@ public class SalaServiceImpl implements SalaService {
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
-        } else {
-            sala.setFotoSala("markerImage.png");
         }
         salaDao.save(sala);
     }

@@ -39,10 +39,7 @@ public class FilmServiceImpl implements FilmService {
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
-        } else {
-            film.setLocandina("markerImage.png");
         }
-
         filmDao.save(film);
     }
 
