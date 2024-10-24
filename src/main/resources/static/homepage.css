@@ -5,7 +5,7 @@ body {
 
 #presentazione,
 #film {
-    background-color: #f5e5c6 !important;
+    background-color: #E5E3E4 !important;
 }
 
 #presentazione {
@@ -64,7 +64,7 @@ body {
 
 
 .custom-header {
-    background-color: #57968f;
+    background-color: #4A6D6B;
     color: white;
 }
 
@@ -74,7 +74,7 @@ body {
 }
 
 .custom-navbar {
-    background-color: #3a4e4e;
+    background-color: #5E978C;
     margin-bottom: 0; /* Assicurati che la navbar non abbia margini inferiori */
 }
 
@@ -181,6 +181,7 @@ body {
     margin-top: 0; /* Assicurati che il carosello non abbia margini superiori */
 }
 
+<<<<<<< Updated upstream
 /* Stile per l'overlay scuro delle immagini nel carosello */
 
 .overlay {
@@ -194,3 +195,15 @@ body {
 }
 
 
+=======
+footer {
+    background-color: #4A6D6B;
+}
+
+#logo {
+    max-width: 50%;
+}
+
+
+
+>>>>>>> Stashed changes
