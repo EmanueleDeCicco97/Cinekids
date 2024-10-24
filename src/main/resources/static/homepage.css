@@ -181,7 +181,7 @@ body {
     margin-top: 0; /* Assicurati che il carosello non abbia margini superiori */
 }
 
-<<<<<<< Updated upstream
+
 /* Stile per l'overlay scuro delle immagini nel carosello */
 
 .overlay {
@@ -194,8 +194,6 @@ body {
     z-index: 1; /* Assicurati che l'overlay sia sopra l'immagine */
 }
 
-
-=======
 footer {
     background-color: #4A6D6B;
 }
@@ -204,6 +202,3 @@ footer {
     max-width: 50%;
 }
 
-
-
->>>>>>> Stashed changes
