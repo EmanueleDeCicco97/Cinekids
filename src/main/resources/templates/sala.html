@@ -72,8 +72,15 @@
                         <h5 class="card-title" th:text="${sala.nomeSala}"></h5>
                         <p th:text="${sala.citta}"></p>
                         <div class="mt-auto">
-                            <div th:if="${admin != null}">
-                                <a th:href="@{/eliminaSala(id=${sala.id})}" class="btn btn-danger mt-2">Elimina Sala</a>
+                            <div class="mt-auto">
+                                <div class="mt-auto">
+                                    <div th:if="${admin != null}">
+                                        <button type="button" class="btn btn-danger mt-2"
+                                                data-toggle="modal" data-target="#confermaEliminazioneModal"
+                                                th:onclick="'setDeleteId(' + ${sala.id} + ')'">Elimina Sala</button>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -172,13 +179,40 @@
     </div>
 </div>
 
+
+<div class="modal fade" id="confermaEliminazioneModal" tabindex="-1" aria-labelledby="confermaEliminazioneModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confermaEliminazioneModalLabel">Conferma Eliminazione</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Sei sicuro di voler eliminare questa sala? L'operazione non può essere annullata.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
+                <a id="btnConfermaEliminazione" class="btn btn-danger">Elimina</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <footer class="bg-dark text-white text-center py-3">
     <div class="container">
         <p>&copy; 2024 Festival Cinekids. Tutti i diritti riservati.</p>
-        <p><a href="admin_login.html" class="text-white">Login Admin</a></p>
     </div>
 </footer>
 
+
+<script>
+    function setDeleteId(id) {
+        document.getElementById('btnConfermaEliminazione').setAttribute('href', '/sale/eliminaSala?id=' + id);
+    }
+</script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
