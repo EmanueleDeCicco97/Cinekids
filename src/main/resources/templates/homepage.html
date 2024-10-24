@@ -17,8 +17,11 @@
             <div class="col-md-4">
                 <h2>Logo</h2>
             </div>
-            <div th:if="${error != null}" class="alert alert-danger" role="alert">
+            <div th:if="${error != null}" class="alert alert-danger" role="alert" style="position: absolute; left: 43%">
                 Credenziali sbagliate. Riprova.
+            </div>
+            <div th:if="${errorSuggerimento != null}" class="alert alert-danger" role="alert" style="position: absolute; left: 35%">
+                Suggerimento già inserito per questa email, puoi inviarne solo uno all'anno.
             </div>
             <div class="col-md-4 text-right">
                 <div th:if="${admin != null}">

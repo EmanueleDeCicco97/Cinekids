@@ -25,12 +25,20 @@ public class SuggerimentoServiceImpl implements SuggerimentoService {
 
     @Override
     public boolean inserisciSuggerimento(Suggerimento suggerimento) {
-        if (suggerimentoDao.existsByEmailAndDataInvio(suggerimento.getEmail(), suggerimento.getDataInvio()) == null) {
+        int annoInvio = suggerimento.getDataInvio().getYear();  // Ottieni l'anno della data di invio
+
+        List<Suggerimento> suggerimenti = suggerimentoDao.findAllByEmail(suggerimento.getEmail());  // Recupera tutti i suggerimenti con la stessa email
+
+        boolean esisteSuggerimentoPerAnno = suggerimenti.stream()
+                .anyMatch(s -> s.getDataInvio().getYear() == annoInvio);
+
+        if (!esisteSuggerimentoPerAnno) {
             suggerimentoDao.save(suggerimento);
             return true;
         } else {
             return false;
         }
+
     }
 
     @Override

@@ -12,4 +12,5 @@ public interface SuggerimentoService {
     public boolean inserisciSuggerimento(Suggerimento suggerimento);
 
     public void eliminaSuggerimento(int idSuggerimento);
+
 }

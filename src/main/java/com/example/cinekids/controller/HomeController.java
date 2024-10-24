@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
@@ -75,8 +76,9 @@ public class HomeController {
         Suggerimento suggerimento = new Suggerimento();
         suggerimento.setTitoloFilm(titolo);
         suggerimento.setEmail(email);
+        suggerimento.setDataInvio(LocalDateTime.now());
 
-        if (suggerimentoService.inserisciSuggerimento(suggerimento))
+        if (!suggerimentoService.inserisciSuggerimento(suggerimento))
         return "redirect:/?errorSuggerimento";
 
         return "redirect:/";
