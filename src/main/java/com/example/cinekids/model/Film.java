@@ -24,8 +24,11 @@ public class Film {
     @Column(name = "sinossi", nullable = false)
     private String sinossi;
 
-    @Column(name = "locandina", nullable = false)
+    @Column(name = "locandina", nullable = true)
     private String locandina;
+
+    @Column(name = "trailer", nullable = true)
+    private String trailer;
 
     @OneToMany(mappedBy = "film", cascade = CascadeType.ALL)
     private List<Proiezione> proiezioni;
@@ -84,5 +87,13 @@ public class Film {
 
     public void setProiezioni(List<Proiezione> proiezioni) {
         this.proiezioni = proiezioni;
+    }
+
+    public String getTrailer() {
+        return trailer;
+    }
+
+    public void setTrailer(String trailer) {
+        this.trailer = trailer;
     }
 }

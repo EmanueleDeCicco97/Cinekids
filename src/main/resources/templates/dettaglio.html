@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-          content="1° Festival Cinekids - Proiezione di celebri pellicole con protagonisti bambini e ragazzi">
+    <meta name="description" content="1° Festival Cinekids - Proiezione di celebri pellicole con protagonisti bambini e ragazzi">
     <title>Festival Cinekids</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="homepage.css">
@@ -30,6 +29,20 @@
         .card img {
             max-height: 400px;
             object-fit: cover;
+        }
+
+        .iframe-container {
+            position: relative;
+            overflow: hidden;
+            padding-top: 56.25%; /* Aspect ratio 16:9 */
+        }
+
+        .iframe-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
         }
     </style>
 </head>
@@ -72,13 +85,18 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <img th:src="@{${film.locandina}}" class="card-img-top" alt="Locandina di [[${film.titolo}]]">
+                <img th:src="@{${film.locandina == null ? 'markerImage.png' : film.locandina}}" class="card-img-top" alt="Locandina di [[${film.titolo}]]">
                 <div class="card-body">
                     <h5 class="card-title" th:text="${film.titolo}">Titolo Film</h5>
-                    <p class="card-text"><strong>Regista:</strong> <span th:text="${film.regista}">Nome Regista</span>
-                    </p>
+                    <p class="card-text"><strong>Regista:</strong> <span th:text="${film.regista}">Nome Regista</span></p>
                     <p class="card-text"><strong>Genere:</strong> <span th:text="${film.genere}">Genere</span></p>
                     <p class="card-text"><strong>Trama:</strong> <span th:text="${film.sinossi}">Sinossi</span></p>
+                    <p class="card-text"><strong>Trailer:</strong></p>
+                    <div class="iframe-container">
+                        <iframe th:src="@{${film.trailer == null ? 'comingsoon.jpg': film.trailer}}"
+                                frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
 
                     <p class="card-text"><strong>Proiezioni:</strong></p>
                     <table class="table table-bordered">
@@ -88,24 +106,19 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="proiezione : ${proiezioni}">
-                            <td th:text="${#temporals.format(proiezione.dataOra, 'dd/MM/yyyy HH:mm')}"></td>
+                        <tr th:each="data : ${date}">
+                            <td th:text="${#temporals.format(data, 'dd/MM/yyyy HH:mm')}"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="1" class="text-center">In tutte le sale presenti in Cinekids</td>
                         </tr>
                         </tbody>
                     </table>
-                    <iframe width="1234" height="694" src="https://www.youtube.com/embed/A1x1s__vlKU"
-                            title="IT - Il nuovo trailer italiano" frameborder="0" allow="accelerometer;
-                            autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
-
-                    </iframe>
-                    <p class="card-text text-center">In tutte le sale presenti in Cinekids</p>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 
 <footer class="bg-dark text-white text-center py-3">
     <div class="container">
