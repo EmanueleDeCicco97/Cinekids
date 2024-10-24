@@ -48,18 +48,33 @@
 </head>
 <body>
 
-<header class="bg-dark text-white py-4">
+<header class="custom-header py-4">
     <div class="container">
         <div class="row justify-content-between align-items-center">
             <div class="col-md-4">
-                <h2>Logo</h2>
+                <img id="logo" src="logo.png">
+            </div>
+            <div th:if="${error != null}" class="alert alert-danger" role="alert" style="position: absolute; left: 43%">
+                Credenziali sbagliate. Riprova.
+            </div>
+            <div th:if="${errorSuggerimento != null}" class="alert alert-danger" role="alert" style="position: absolute; left: 35%">
+                Suggerimento già inserito per questa email, puoi inviarne solo uno all'anno.
             </div>
             <div class="col-md-4 text-right">
-                <a href="admin_login.html" class="text-white">Area Admin</a>
+                <div th:if="${admin != null}">
+                    <a href="/logout" class="text-white">Logout</a>
+                </div>
+                <div th:if="${admin != null}">
+                    <a href="#" class="text-white" data-toggle="modal" data-target="#aggiungiAdminModal">Aggiungi admin</a>
+                </div>
+                <div th:if="${admin == null}">
+                    <a href="#" class="text-white" data-toggle="modal" data-target="#adminModal">Area Admin</a>
+                </div>
             </div>
         </div>
         <div class="text-center">
             <h1>1° Festival Cinekids</h1>
+            <h2 th:if="${admin != null}">Area amministrativa</h2>
             <p>Scopri le celebri pellicole con protagonisti bambini e ragazzi</p>
         </div>
     </div>
@@ -75,7 +90,7 @@
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
                 <li class="nav-item"><a class="nav-link" href="/sale">Sale</a></li>
-                <li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#suggerisciFilmModal">Sondaggio</a></li>
+                <li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#suggerisciFilmModal">Suggerimento</a></li>
             </ul>
         </div>
     </div>
@@ -120,7 +135,86 @@
     </div>
 </div>
 
-<footer class="bg-dark text-white text-center py-3">
+<div class="modal fade" id="adminModal" tabindex="-1" aria-labelledby="adminModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="adminModalLabel">Login Area Admin</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="/login" method="POST">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Accedi</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="aggiungiAdminModal" tabindex="-1" aria-labelledby="adminModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="aggiungiAdminModalLabel">Area Registrazione Admin</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="/register" method="POST">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="emailAdminNuovo" name="emailAdminNuovo" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="passwordAdminNuovo" name="passwordAdminNuovo" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Registra</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="suggerisciFilmModal" tabindex="-1" aria-labelledby="suggerisciFilmModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="suggerisciFilmModalLabel">Suggerisci un Film</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="/suggerimento" method="POST">
+                    <div class="form-group">
+                        <label for="titolo_film">Titolo del Film</label>
+                        <input type="text" class="form-control" id="titolo_film" name="titoloFilm" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email_suggerimento">La tua Email</label>
+                        <input type="email" class="form-control" id="email_suggerimento" name="emailSuggerimento" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Invia Suggerimento</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="text-white text-center py-3">
     <div class="container">
         <p>&copy; 2024 Festival Cinekids. Tutti i diritti riservati.</p>
     </div>
