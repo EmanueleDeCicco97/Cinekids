@@ -11,7 +11,7 @@
 </head>
 <body>
 
-<header class="bg-dark text-white py-4">
+<header class="custom-header py-4">
     <div class="container">
         <div class="row justify-content-between align-items-center">
             <div class="col-md-4">
@@ -44,7 +44,7 @@
 </header>
 
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg custom-navbar">
     <div class="container">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -60,6 +60,7 @@
     </div>
 </nav>
 
+
 <section id="presentazione" class="py-5 bg-light">
     <div class="container text-center">
         <h2>Benvenuti al Festival Cinekids!</h2>
@@ -73,27 +74,24 @@
 <section id="film" class="py-5 bg-light">
     <div class="container">
         <h2 class="text-center mb-5">I Film in Proiezione</h2>
-        <div class="row">
-            <div class="col-md-3 col-6 mb-4" th:each="film : ${films}">
-                <div class="card h-100">
+        <div class="row justify-content-center">
+            <div class="col-md-4 col-lg-3 col-6 mb-4" th:each="film : ${films}">
+                <div class="card h-100 text-decoration-none">
                     <img th:src="@{${film.locandina == null ? 'markerImage.png' : film.locandina}}"
                          class="card-img-top img-fluid"
                          th:alt="${film.titolo}">
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title" th:text="${film.titolo}"></h5>
-                        <div class="mt-auto">
-                            <a th:href="@{/dettaglio(id=${film.id})}" class="btn btn-primary">Dettagli</a>
-                            <div th:if="${admin != null}">
-                                <a th:href="@{/modificaFilm(id=${film.id})}" class="btn btn-warning mt-2">Modifica
-                                    Film</a>
-                                <a th:href="@{/eliminaFilm(id=${film.id})}" class="btn btn-danger mt-2">Elimina Film</a>
-                            </div>
+                    <div class="card-overlay"></div>
+                    <div class="card-details">
+                        <a th:href="@{/dettaglio(id=${film.id})}" class="btn btn-info mb-2">Dettagli</a>
+                        <div th:if="${admin != null}">
+                            <a th:href="@{/modificaFilm(id=${film.id})}" class="btn btn-warning mb-2">Modifica</a>
+                            <a th:href="@{/eliminaFilm(id=${film.id})}" class="btn btn-danger">Elimina</a>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-3 col-6 mb-4" th:if="${admin != null}">
+            <div class="col-md-4 col-lg-3 col-6 mb-4" th:if="${admin != null}">
                 <div class="card h-100 d-flex align-items-center justify-content-center">
                     <a th:href="@{/aggiungiFilm}"
                        class="btn d-flex flex-column align-items-center justify-content-center"
@@ -106,6 +104,9 @@
         </div>
     </div>
 </section>
+
+
+
 
 <div class="modal fade" id="adminModal" tabindex="-1" aria-labelledby="adminModalLabel" aria-hidden="true">
     <div class="modal-dialog">

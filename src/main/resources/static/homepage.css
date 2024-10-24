@@ -1,24 +1,130 @@
+
+#presentazione,
+#film {
+    background-color: #f5e5c6 !important;
+}
+
+
+.custom-header {
+    background-color: #57968f;
+    color: white;
+}
+
+.custom-header .nav-link,
+.custom-header .alert {
+    color: white;
+}
+
+
+.custom-navbar {
+    background-color: #3a4e4e;
+}
+
+.custom-navbar .nav-link {
+    color: white;
+}
+
 .nav {
     width: 100%;
     margin: 0px auto;
     padding: 16px;
 }
 
+/* Stili delle cards */
 .card {
+    position: relative;
     display: flex;
     flex-direction: column;
     height: 100%;
+    cursor: pointer;
+    transition: transform 0.3s;
+    max-width: 400px; /* Aumenta la larghezza massima delle cards */
+    margin: auto; /* Centrare le cards */
 }
 
+/* Effetto hover sulle cards */
+.card:hover {
+    transform: scale(1.08); /* Ingrandire leggermente al passaggio del mouse */
+}
+
+/* Gestione delle immagini delle cards */
 .card-img-top {
-    height: 200px;
-    object-fit: cover;
+    width: 100%;
+    height: auto;
+    max-height: 350px; /* Aumenta l'altezza massima delle immagini */
+    object-fit: contain; /* Visualizza l'immagine intera senza ritagliarla */
 }
 
+/* Corpo della card che si espande */
 .card-body {
     flex-grow: 1;
 }
 
+/* Overlay delle cards */
+.card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Sfondo scuro trasparente */
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+/* L'overlay diventa visibile quando si passa con il mouse */
+.card:hover .card-overlay {
+    opacity: 1;
+}
+
+/* Dettagli e pulsanti centrati al passaggio del mouse */
+.card-details {
+    position: absolute;
+    top: 50%; /* Centrato verticalmente */
+    left: 50%; /* Centrato orizzontalmente */
+    transform: translate(-50%, -50%); /* Centratura perfetta */
+    color: white;
+    font-size: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0; /* Inizialmente invisibile */
+    transition: opacity 0.3s;
+}
+
+/* Dettagli visibili al passaggio del mouse */
+.card:hover .card-details {
+    opacity: 1;
+}
+
+/* Stili per i pulsanti nei dettagli delle cards */
+.card-details a {
+    margin: 5px 0; /* Spaziatura tra i pulsanti */
+    text-decoration: none;
+    width: 100%; /* Pulsanti larghi quanto la card */
+    text-align: center; /* Testo centrato nei pulsanti */
+    color: white; /* Colore del testo nei pulsanti */
+}
+
+.card-details a.btn-info {
+    background-color: #17a2b8;
+}
+
+.card-details a.btn-warning {
+    background-color: #ffc107;
+}
+
+.card-details a.btn-danger {
+    background-color: #dc3545;
+}
+
+/* Spazio tra le cards */
+.mb-4 {
+    margin-bottom: 2rem; /* Aumenta lo spazio tra le cards */
+}
+
+/* Margine automatico in alto per l'allineamento verticale */
 .mt-auto {
     margin-top: auto;
 }
