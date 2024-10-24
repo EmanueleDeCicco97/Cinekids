@@ -17,7 +17,6 @@ public interface ProiezioneService {
 
     public void eliminaProiezione(int idProiezione);
 
-    List<Proiezione> elencoProiezioniByFilm(Film film);
 
     public void creaProiezioniPerTutteLeSale(Film film, MultipartFile multipartFile, LocalDateTime dataOra);
 }

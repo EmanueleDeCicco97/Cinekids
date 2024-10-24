@@ -27,7 +27,7 @@ public class DettaglioController {
     public String dettaglio(Model model, @RequestParam(name = "id") int idFilm) {
 
         Film film = filmService.dettaglioFilm(idFilm);
-        List<Proiezione> proiezioni = proiezioniService.elencoProiezioniByFilm(film);
+        List<Proiezione> proiezioni = film.getProiezioni();
         model.addAttribute("film", film);
         model.addAttribute("proiezioni", proiezioni);
 

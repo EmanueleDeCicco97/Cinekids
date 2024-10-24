@@ -48,10 +48,6 @@ public class ProiezioneServiceImpl implements ProiezioneService {
         proiezioneDao.deleteById(idProiezione);
     }
 
-    @Override
-    public List<Proiezione> elencoProiezioniByFilm(Film film) {
-        return proiezioneDao.findByFilm(film);
-    }
 
     @Override
     public void creaProiezioniPerTutteLeSale(Film film, MultipartFile multipartFile, LocalDateTime dataOra) {
