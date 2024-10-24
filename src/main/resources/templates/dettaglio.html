@@ -215,8 +215,7 @@
 
 <script>
     function setFilmIdRegister(id) {
-        var registerUrl = '/register?redirectUrl=/dettaglio?id=' + id;
-        document.getElementById('aggiungiAdminForm').setAttribute('action', registerUrl);
+        document.getElementById('aggiungiAdminForm').setAttribute('action', '/register?redirectUrl=/dettaglio?id=' + id);
     }
 </script>
 
