@@ -33,8 +33,8 @@ public class SalaController {
 
     @GetMapping()
     public String gethome(Model model, HttpSession session,
-                          @RequestParam(name="error",required = false ) String error,
-                          @RequestParam(name="errorSuggerimento",required = false ) String errorSuggerimento) {
+                          @RequestParam(name = "error", required = false) String error,
+                          @RequestParam(name = "errorSuggerimento", required = false) String errorSuggerimento) {
         List<Sala> sale = salaService.elencoSala();
         Admin admin = (Admin) session.getAttribute("admin");
         model.addAttribute("admin", admin);
@@ -43,5 +43,11 @@ public class SalaController {
         model.addAttribute("errorSuggerimento", errorSuggerimento);
 
         return "sala";
+    }
+
+    @GetMapping("/eliminaSala")
+    public String eliminaSala(@RequestParam("id") int idSala) {
+        salaService.eliminaSala(idSala);
+        return "redirect:/sale";
     }
 }

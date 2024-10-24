@@ -28,8 +28,8 @@ public class HomeController {
     private SuggerimentoService suggerimentoService;
 
     @GetMapping()
-    public String gethome(Model model, @RequestParam(name="error",required = false ) String error, HttpSession session,
-                                       @RequestParam(name="errorSuggerimento",required = false ) String errorSuggerimento) {
+    public String gethome(Model model, @RequestParam(name = "error", required = false) String error, HttpSession session,
+                          @RequestParam(name = "errorSuggerimento", required = false) String errorSuggerimento) {
         List<Film> films = filmService.elencoFilm();
         Admin admin = (Admin) session.getAttribute("admin");
         model.addAttribute("admin", admin);
@@ -84,9 +84,16 @@ public class HomeController {
         suggerimento.setDataInvio(LocalDateTime.now());
 
         if (!suggerimentoService.inserisciSuggerimento(suggerimento))
-        return "redirect:/?errorSuggerimento";
+            return "redirect:/?errorSuggerimento";
 
         return "redirect:" + redirectUrl;
     }
+
+    @GetMapping("/eliminaFilm")
+    public String eliminaFilm(@RequestParam("id") int idFilm) {
+        filmService.eliminaFilm(idFilm);
+        return "redirect:/";
+    }
+
 }
 
