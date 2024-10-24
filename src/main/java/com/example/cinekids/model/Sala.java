@@ -17,6 +17,9 @@ public class Sala {
     @Column(name = "nome_sala", nullable = false)
     private String nomeSala;
 
+    @Column(name="foto_sala")
+    private String fotoSala;
+
     @OneToMany(mappedBy = "sala", cascade = CascadeType.ALL)
     private List<Proiezione> proiezioni;
 
@@ -42,6 +45,14 @@ public class Sala {
 
     public void setNomeSala(String nomeSala) {
         this.nomeSala = nomeSala;
+    }
+
+    public String getFotoSala() {
+        return fotoSala;
+    }
+
+    public void setFotoSala(String fotoSala) {
+        this.fotoSala = fotoSala;
     }
 
     public List<Proiezione> getProiezioni() {
