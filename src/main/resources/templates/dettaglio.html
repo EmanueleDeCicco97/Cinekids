@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="1° Festival Cinekids - Proiezione di celebri pellicole con protagonisti bambini e ragazzi">
+    <meta name="description"
+          content="1° Festival Cinekids - Proiezione di celebri pellicole con protagonisti bambini e ragazzi">
     <title>Festival Cinekids</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="dettaglio.css">
@@ -34,7 +35,7 @@
         .iframe-container {
             position: relative;
             overflow: hidden;
-            padding-top: 56.25%; /* Aspect ratio 16:9 */
+            padding-top: 56.25%;
         }
 
         .iframe-container iframe {
@@ -57,18 +58,23 @@
             <div th:if="${error != null}" class="alert alert-danger" role="alert" style="position: absolute; left: 43%">
                 Credenziali sbagliate. Riprova.
             </div>
-            <div th:if="${errorSuggerimento != null}" class="alert alert-danger" role="alert" style="position: absolute; left: 35%">
+            <div th:if="${errorSuggerimento != null}" class="alert alert-danger" role="alert"
+                 style="position: absolute; left: 35%">
                 Suggerimento già inserito per questa email, puoi inviarne solo uno all'anno.
             </div>
             <div class="col-md-4 text-right">
                 <div th:if="${admin != null}">
-                    <a href="/logout" class="text-white">Logout</a>
+                    <a th:href="@{/logout(redirectUrl=${'/dettaglio?id=' + film.id})}" class="text-white">Logout</a>
                 </div>
                 <div th:if="${admin != null}">
-                    <a href="#" class="text-white" data-toggle="modal" data-target="#aggiungiAdminModal">Aggiungi admin</a>
+                    <a href="#" class="text-white" data-toggle="modal" data-target="#aggiungiAdminModal"
+                       th:onclick="'setFilmIdRegister(' + ${film.id} + ')'">Aggiungi admin</a>
+
                 </div>
                 <div th:if="${admin == null}">
-                    <a href="#" class="text-white" data-toggle="modal" data-target="#adminModal">Area Admin</a>
+                    <a href="#" class="text-white" data-toggle="modal" data-target="#adminModal"
+                       th:onclick="'setFilmIdLogin(' + ${film.id} + ')'">Area Admin</a>
+
                 </div>
             </div>
         </div>
@@ -90,7 +96,12 @@
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
                 <li class="nav-item"><a class="nav-link" href="/sale">Sale</a></li>
-                <li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#suggerisciFilmModal">Suggerimento</a></li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-toggle="modal" data-target="#suggerisciFilmModal"
+                       th:onclick="'setFilmIdSuggerimento(' + ${film.id} + ')'">
+                        Suggerimento
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
@@ -100,16 +111,20 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <img th:src="@{${film.locandina == null ? 'markerImage.png' : film.locandina}}" class="card-img-top" alt="Locandina di [[${film.titolo}]]">
+                <img th:src="@{${film.locandina == null ? 'markerImage.png' : film.locandina}}" class="card-img-top"
+                     alt="Locandina di [[${film.titolo}]]">
                 <div class="card-body">
+
                     <h5 class="card-title" th:text="${film.titolo}">Titolo Film</h5>
-                    <p class="card-text"><strong>Regista:</strong> <span th:text="${film.regista}">Nome Regista</span></p>
+                    <p class="card-text"><strong>Regista:</strong> <span th:text="${film.regista}">Nome Regista</span>
+                    </p>
                     <p class="card-text"><strong>Genere:</strong> <span th:text="${film.genere}">Genere</span></p>
                     <p class="card-text"><strong>Trama:</strong> <span th:text="${film.sinossi}">Sinossi</span></p>
                     <p class="card-text"><strong>Trailer:</strong></p>
                     <div class="iframe-container">
                         <iframe th:src="@{${film.trailer == null ? 'comingsoon.jpg': film.trailer}}"
-                                frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                 referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                     </div>
 
@@ -145,7 +160,8 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="/login" method="POST">
+                <form id="adminLoginForm" action="/login" method="POST">
+                    <input type="hidden" id="filmId" name="filmId">
                     <div class="form-group">
                         <label for="email">Email</label>
                         <input type="email" class="form-control" id="email" name="email" required>
@@ -161,7 +177,16 @@
     </div>
 </div>
 
-<div class="modal fade" id="aggiungiAdminModal" tabindex="-1" aria-labelledby="adminModalLabel" aria-hidden="true">
+<script>
+    function setFilmIdLogin(id) {
+        document.getElementById('filmId').value = id;
+        document.getElementById('adminLoginForm').setAttribute('action', '/login?redirectUrl=/dettaglio?id=' + id);
+    }
+</script>
+
+
+<div class="modal fade" id="aggiungiAdminModal" tabindex="-1" aria-labelledby="aggiungiAdminModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -171,14 +196,15 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="/register" method="POST">
+                <form id="aggiungiAdminForm" action="/register" method="POST">
                     <div class="form-group">
                         <label for="email">Email</label>
                         <input type="email" class="form-control" id="emailAdminNuovo" name="emailAdminNuovo" required>
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <input type="password" class="form-control" id="passwordAdminNuovo" name="passwordAdminNuovo" required>
+                        <input type="password" class="form-control" id="passwordAdminNuovo" name="passwordAdminNuovo"
+                               required>
                     </div>
                     <button type="submit" class="btn btn-primary">Registra</button>
                 </form>
@@ -187,8 +213,16 @@
     </div>
 </div>
 
+<script>
+    function setFilmIdRegister(id) {
+        var registerUrl = '/register?redirectUrl=/dettaglio?id=' + id;
+        document.getElementById('aggiungiAdminForm').setAttribute('action', registerUrl);
+    }
+</script>
 
-<div class="modal fade" id="suggerisciFilmModal" tabindex="-1" aria-labelledby="suggerisciFilmModalLabel" aria-hidden="true">
+
+<div class="modal fade" id="suggerisciFilmModal" tabindex="-1" aria-labelledby="suggerisciFilmModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -198,14 +232,16 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="/suggerimento" method="POST">
+                <form id="suggerimentoForm" action="/suggerimento" method="POST">
+                    <input type="hidden" id="filmSuggeritoId" name="filmSuggeritoId">
                     <div class="form-group">
                         <label for="titolo_film">Titolo del Film</label>
                         <input type="text" class="form-control" id="titolo_film" name="titoloFilm" required>
                     </div>
                     <div class="form-group">
                         <label for="email_suggerimento">La tua Email</label>
-                        <input type="email" class="form-control" id="email_suggerimento" name="emailSuggerimento" required>
+                        <input type="email" class="form-control" id="email_suggerimento" name="emailSuggerimento"
+                               required>
                     </div>
                     <button type="submit" class="btn btn-primary">Invia Suggerimento</button>
                 </form>
@@ -213,6 +249,13 @@
         </div>
     </div>
 </div>
+<script>
+    function setFilmIdSuggerimento(id) {
+        document.getElementById('filmSuggeritoId').value = id;
+        document.getElementById('suggerimentoForm').setAttribute('action', '/suggerimento?redirectUrl=/dettaglio?id=' + id);
+    }
+</script>
+
 
 <footer class="text-white text-center py-3">
     <div class="container">
