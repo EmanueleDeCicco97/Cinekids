@@ -67,7 +67,7 @@
 
             <div class="col-md-4 text-right">
                 <div th:if="${admin != null}">
-                    <a href="/logout" class="text-white">Logout</a>
+                    <a th:href="@{/logout(redirectUrl=${'/dettaglio?id=' + film.id})}" class="text-white">Logout</a>
                 </div>
                 <div th:if="${admin != null}">
                     <a href="#" class="text-white" data-toggle="modal" data-target="#aggiungiAdminModal">Aggiungi admin</a>
