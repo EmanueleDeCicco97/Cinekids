@@ -33,15 +33,16 @@ public class ProiezioneServiceImpl implements ProiezioneService {
         return (List<Proiezione>) proiezioneDao.findAll();
     }
 
-    @Override
-    public void inserisciProiezione(Proiezione proiezione, LocalDateTime dataOra, int idFilm, int idSala) {
-        Film film = filmService.dettaglioFilm(idFilm);
-        Sala sala = salaService.dettaglioSala(idSala);
-        proiezione.setDataOra(dataOra);
-        proiezione.setFilm(film);
-        proiezione.setSala(sala);
-        proiezioneDao.save(proiezione);
-    }
+//    @Override
+//    public void inserisciProiezione(LocalDateTime dataOra, int idFilm, int idSala) {
+//        Proiezione proiezione = new Proiezione();
+//        Film film = filmService.dettaglioFilm(idFilm);
+//        Sala sala = salaService.dettaglioSala(idSala);
+//        proiezione.setDataOra(dataOra);
+//        proiezione.setFilm(film);
+//        proiezione.setSala(sala);
+//        proiezioneDao.save(proiezione);
+//    }
 
     @Override
     public void eliminaProiezione(int idProiezione) {
@@ -50,9 +51,17 @@ public class ProiezioneServiceImpl implements ProiezioneService {
 
 
     @Override
-    public void creaProiezioniPerTutteLeSale(Film film, MultipartFile multipartFile, LocalDateTime dataOra) {
-
-        filmService.insericiFilm(film, multipartFile);
+    public void creaProiezioniPerTutteLeSale(String titolo, String genere, String regista,
+                                             int annoDiUscita, String sinossi, String trailer,
+                                             MultipartFile locandina, LocalDateTime dataOra) {
+        Film film = new Film();
+        film.setTitolo(titolo);
+        film.setGenere(genere);
+        film.setRegista(regista);
+        film.setAnno_uscita(annoDiUscita);
+        film.setSinossi(sinossi);
+        film.setTrailer(trailer);
+        filmService.insericiFilm(film, locandina);
 
         // recupero tutte le sale
         List<Sala> sale = salaService.elencoSala();

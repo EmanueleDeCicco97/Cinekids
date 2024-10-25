@@ -18,7 +18,10 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public void inserisciAdmin(Admin admin) {
+    public void inserisciAdmin(String email, String password) {
+        Admin admin = new Admin();
+        admin.setEmail(email);
+        admin.setPassword(password);
         adminDao.save(admin);
     }
 

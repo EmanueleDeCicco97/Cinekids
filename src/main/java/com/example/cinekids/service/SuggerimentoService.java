@@ -9,7 +9,7 @@ public interface SuggerimentoService {
 
     public List<Suggerimento> elencoSuggerimento();
 
-    public boolean inserisciSuggerimento(Suggerimento suggerimento);
+    public boolean inserisciSuggerimento(String titolo, String email);
 
     public void eliminaSuggerimento(int idSuggerimento);
 

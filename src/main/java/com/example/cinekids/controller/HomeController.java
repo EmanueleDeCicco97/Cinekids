@@ -64,11 +64,8 @@ public class HomeController {
                                 @RequestParam("emailAdminNuovo") String email,
                                 @RequestParam("passwordAdminNuovo") String password,
                                 @RequestParam(name = "redirectUrl", defaultValue = "/") String redirectUrl) {
-        Admin admin = new Admin();
-        admin.setEmail(email);
-        admin.setPassword(password);
 
-        adminService.inserisciAdmin(admin);
+        adminService.inserisciAdmin(email, password);
 
         return "redirect:" + redirectUrl;
     }
@@ -78,12 +75,8 @@ public class HomeController {
                                        @RequestParam("titoloFilm") String titolo,
                                        @RequestParam("emailSuggerimento") String email,
                                        @RequestParam(name = "redirectUrl", defaultValue = "/") String redirectUrl) {
-        Suggerimento suggerimento = new Suggerimento();
-        suggerimento.setTitoloFilm(titolo);
-        suggerimento.setEmail(email);
-        suggerimento.setDataInvio(LocalDateTime.now());
 
-        if (!suggerimentoService.inserisciSuggerimento(suggerimento))
+        if (!suggerimentoService.inserisciSuggerimento(titolo, email))
             return "redirect:/?errorSuggerimento";
 
         return "redirect:" + redirectUrl;
