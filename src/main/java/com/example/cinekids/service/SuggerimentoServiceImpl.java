@@ -5,6 +5,7 @@ import com.example.cinekids.model.Suggerimento;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -24,10 +25,15 @@ public class SuggerimentoServiceImpl implements SuggerimentoService {
     }
 
     @Override
-    public boolean inserisciSuggerimento(Suggerimento suggerimento) {
-        int annoInvio = suggerimento.getDataInvio().getYear();  // Ottieni l'anno della data di invio
+    public boolean inserisciSuggerimento(String titolo, String email) {
+        Suggerimento suggerimento = new Suggerimento();
+        suggerimento.setTitoloFilm(titolo);
+        suggerimento.setEmail(email);
+        suggerimento.setDataInvio(LocalDateTime.now());
 
-        List<Suggerimento> suggerimenti = suggerimentoDao.findAllByEmail(suggerimento.getEmail());  // Recupera tutti i suggerimenti con la stessa email
+        int annoInvio = suggerimento.getDataInvio().getYear();
+
+        List<Suggerimento> suggerimenti = suggerimentoDao.findAllByEmail(suggerimento.getEmail());
 
         boolean esisteSuggerimentoPerAnno = suggerimenti.stream()
                 .anyMatch(s -> s.getDataInvio().getYear() == annoInvio);
