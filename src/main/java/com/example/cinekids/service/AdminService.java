@@ -6,7 +6,7 @@ import jakarta.servlet.http.HttpSession;
 public interface AdminService {
     public Admin dettaglioAdmin(int idAdmin);
 
-    public void inserisciAdmin(String email, String password);
+    public boolean inserisciAdmin(String email, String password);
 
     public void eliminaAdmin(int idAdmin);
 

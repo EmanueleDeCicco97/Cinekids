@@ -29,13 +29,17 @@ public class HomeController {
 
     @GetMapping()
     public String gethome(Model model, @RequestParam(name = "error", required = false) String error, HttpSession session,
-                          @RequestParam(name = "errorSuggerimento", required = false) String errorSuggerimento) {
+                          @RequestParam(name = "errorSuggerimento", required = false) String errorSuggerimento,
+                          @RequestParam(name = "errorAdmin", required = false) String errorAdmin) {
+
         List<Film> films = filmService.elencoFilm();
         Admin admin = (Admin) session.getAttribute("admin");
         model.addAttribute("admin", admin);
         model.addAttribute("films", films);
         model.addAttribute("error", error);
         model.addAttribute("errorSuggerimento", errorSuggerimento);
+        model.addAttribute("errorAdmin", errorAdmin);
+
 
         return "homepage";
     }
@@ -65,7 +69,8 @@ public class HomeController {
                                 @RequestParam("passwordAdminNuovo") String password,
                                 @RequestParam(name = "redirectUrl", defaultValue = "/") String redirectUrl) {
 
-        adminService.inserisciAdmin(email, password);
+       if(adminService.inserisciAdmin(email, password))
+           return "redirect:/?errorAdmin";
 
         return "redirect:" + redirectUrl;
     }

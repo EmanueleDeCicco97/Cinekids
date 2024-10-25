@@ -31,6 +31,9 @@
             <div th:if="${errorSuggerimento != null}" class="alert alert-danger" role="alert" style="position: absolute; left: 35%">
                 Suggerimento già inserito per questa email, puoi inviarne solo uno all'anno.
             </div>
+            <div th:if="${errorAdmin != null}" class="alert alert-danger" role="alert" style="position: absolute; left: 35%">
+                Esiste già un Admin con la stessa email inserita
+            </div>
             <div class="col-md-4 text-right">
                 <div th:if="${admin != null}">
                     <a href="/logout" class="text-white">Logout</a>

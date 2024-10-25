@@ -18,11 +18,16 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public void inserisciAdmin(String email, String password) {
+    public boolean inserisciAdmin(String email, String password) {
+
+        if(adminDao.findByEmail(email) != null)
+            return true;
+
         Admin admin = new Admin();
         admin.setEmail(email);
         admin.setPassword(password);
         adminDao.save(admin);
+        return false;
     }
 
     @Override

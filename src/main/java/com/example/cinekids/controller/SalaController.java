@@ -34,13 +34,15 @@ public class SalaController {
     @GetMapping()
     public String gethome(Model model, HttpSession session,
                           @RequestParam(name = "error", required = false) String error,
-                          @RequestParam(name = "errorSuggerimento", required = false) String errorSuggerimento) {
+                          @RequestParam(name = "errorSuggerimento", required = false) String errorSuggerimento,
+                          @RequestParam(name = "errorAdmin", required = false) String errorAdmin) {
         List<Sala> sale = salaService.elencoSala();
         Admin admin = (Admin) session.getAttribute("admin");
         model.addAttribute("admin", admin);
         model.addAttribute("sale", sale);
         model.addAttribute("error", error);
         model.addAttribute("errorSuggerimento", errorSuggerimento);
+        model.addAttribute("errorAdmin", errorAdmin);
 
         return "sala";
     }
