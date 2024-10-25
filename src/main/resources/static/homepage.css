@@ -1,6 +1,7 @@
 body {
     font-family: 'Roboto', sans-serif;
     margin: 0; /* Rimuove margini dal body */
+
 }
 
 #presentazione,
@@ -9,61 +10,14 @@ body {
 }
 
 #presentazione {
-    width: 100vw; /* Larghezza del viewport */
-    margin-left: calc(-50vw + 50%); /* Allinea al centro */
-    padding: 0; /* Rimuove il padding per una larghezza totale */
+    width: 100%;
+    margin-left: 0;
 }
 
-.carousel {
-    height: 600px; /* Imposta l'altezza del carosello */
-    margin-top: 0; /* Assicurati che il carosello non abbia margini superiori */
-}
-
-.carousel-inner img {
-    height: 600px; /* Aumenta l'altezza delle immagini del carousel */
-    object-fit: cover; /* Mantiene l'aspetto dell'immagine */
-}
-
-.carousel-control-prev,
-.carousel-control-next {
-    z-index: 10; /* Assicurati che i controlli siano sopra gli altri elementi */
-}
-
-
-
-
-.carousel-caption {
-    color: white; /* Colore del testo */
-    padding: 10px; /* Padding intorno al testo */
-    left: 0; /* Allinea il contenuto a sinistra */
-    text-align: left; /* Allinea il testo a sinistra */
-    font-weight: bold; /* Rende il testo in grassetto */
-    font-family: 'Arial', sans-serif; /* Cambia il font; puoi sostituire con un altro font a tua scelta */
-    background-color: transparent; /* Rimuove lo sfondo semitrasparente */
-    z-index: 5; /* Imposta un z-index inferiore rispetto ai controlli */
-    position: absolute; /* Assicurati che la caption sia posizionata assolutamente */
-    bottom: 20%; /* Posiziona il testo a 20% dal fondo del carosello */
-    padding-left: 60px; /* Aggiungi margine a sinistra per una migliore spaziatura */
-}
-
-
-
-
-.carousel-caption h2,
-.carousel-caption h5 {
-    font-size: 6rem; /* Aumenta la dimensione del titolo */
-    font-weight: bold; /* Grassetto per il titolo */
-    margin-left: 60px; /* Aggiungi un margine a sinistra */
-}
-
-.carousel-caption p {
-    font-size: 1.3rem; /* Aumenta la dimensione del paragrafo */
-    font-weight: bold; /* Grassetto per il paragrafo */
-    margin-left: 60px; /* Aggiungi un margine a sinistra */
-}
-
-
-.custom-header {
+header.custom-header {
+    width: 100%;
+    padding: 0;
+    margin: 0;
     background-color: #4A6D6B;
     color: white;
 }
@@ -73,9 +27,12 @@ body {
     color: white;
 }
 
-.custom-navbar {
+nav.custom-navbar {
+    width: 100%;
+    padding: 0;
+    margin: 0;
     background-color: #5E978C;
-    margin-bottom: 0; /* Assicurati che la navbar non abbia margini inferiori */
+    margin-bottom: 0; /* Rimuove margini inferiori dalla navbar */
 }
 
 .custom-navbar .nav-link {
@@ -88,6 +45,53 @@ body {
     padding: 16px;
 }
 
+/* Carousel Styles */
+.carousel {
+    width: 100%;
+    margin: 0 auto; /* Allinea il carosello al centro */
+    padding: 0;
+    height: 600px; /* Imposta l'altezza del carosello */
+}
+
+.carousel-inner img {
+    width: 100%; /* Mantiene l'immagine larga quanto il viewport */
+    height: 600px; /* Aumenta l'altezza delle immagini del carosello */
+    object-fit: cover; /* Mantiene l'aspetto dell'immagine */
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    z-index: 10; /* Assicurati che i controlli siano sopra gli altri elementi */
+}
+
+.carousel-caption {
+    width: 100%; /* Allinea il testo del carosello al centro */
+    color: white;
+    padding: 0;
+    text-align: left; /* Allinea il testo a sinistra */
+    font-weight: bold;
+    font-family: 'Arial', sans-serif;
+    background-color: transparent;
+    z-index: 5;
+    position: absolute;
+    bottom: 20%; /* Posiziona il testo a 20% dal fondo del carosello */
+    padding-left: 60px; /* Aggiungi margine a sinistra per una migliore spaziatura */
+}
+
+.carousel-caption h2,
+.carousel-caption h5 {
+    font-size: 6rem; /* Aumenta la dimensione del titolo */
+    font-weight: bold;
+    margin-left: 60px;
+}
+
+.carousel-caption p {
+    font-size: 1.3rem; /* Aumenta la dimensione del paragrafo */
+    font-weight: bold;
+    margin-left: 60px;
+}
+
+/* Card Styles */
 .card {
     position: relative;
     display: flex;
@@ -105,9 +109,9 @@ body {
 
 .card-img-top {
     width: 100%;
-    height: 100%; /* Rende l'immagine alta quanto la card */
-    object-fit: cover; /* Adatta l'immagine per coprire l'area senza spazi vuoti */
-    max-height: none; /* Permette all'immagine di occupare l'altezza intera della card */
+    height: 100%;
+    object-fit: cover;
+    max-height: none;
 }
 
 .card-body {
@@ -168,6 +172,7 @@ body {
     background-color: #dc3545;
 }
 
+/* Additional spacing utilities */
 .mb-4 {
     margin-bottom: 2rem;
 }
@@ -176,29 +181,23 @@ body {
     margin-top: auto;
 }
 
-/* Nuove regole per garantire che non ci sia spazio tra la navbar e il carosello */
-.carousel {
-    margin-top: 0; /* Assicurati che il carosello non abbia margini superiori */
-}
-
-
-/* Stile per l'overlay scuro delle immagini nel carosello */
-
+/* Dark Overlay for Carousel Images */
 .overlay {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(to right, rgba(0, 0, 0, 0.7) 20%, rgba(0, 0, 0, 0) 80%); /* Gradiente scuro ai lati */
-    z-index: 1; /* Assicurati che l'overlay sia sopra l'immagine */
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.7) 20%, rgba(0, 0, 0, 0) 80%);
+    z-index: 1;
 }
 
+/* Footer */
 footer {
     background-color: #4A6D6B;
 }
 
+/* Logo size */
 #logo {
     max-width: 50%;
 }
-
