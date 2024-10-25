@@ -12,36 +12,29 @@
             padding-left: 5px;
             padding-right: 5px;
         }
-
         .card {
             width: 100%;
             max-width: 600px;
             margin: 0 auto;
         }
-
         .card-body {
             padding: 20px;
         }
-
         .card-title {
             font-size: 24px;
         }
-
         .card-text {
             font-size: 16px;
         }
-
         .card img {
             max-height: 400px;
             object-fit: cover;
         }
-
         .iframe-container {
             position: relative;
             overflow: hidden;
             padding-top: 56.25%;
         }
-
         .iframe-container iframe {
             position: absolute;
             top: 0;
@@ -85,7 +78,6 @@
     </div>
 </header>
 
-
 <nav class="navbar navbar-expand-lg custom-navbar">
     <div class="container">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
@@ -94,11 +86,15 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mx-auto">
-                <li class="nav-item" style="width: 200px; text-align: center; padding-top: 3px;"><a class="nav-link" href="/">HOME</a></li>
-                <li class="nav-item" style="transform: scaleY(2)"><a class="nav-link" href="#">|</a></li>
-                <li class="nav-item" style="width: 200px; text-align: center; padding-top: 3px;"><a class="nav-link" href="/sale">SALE</a></li>
-                <li class="nav-item" style="transform: scaleY(2)"><a class="nav-link" href="#">|</a></li>
-                <li class="nav-item" style="width: 200px; text-align: center; padding-top: 3px;"><a class="nav-link" href="#" data-toggle="modal" data-target="#suggerisciFilmModal">PROPONI FILM</a></li>
+                <li class="nav-item" style="width: 200px; text-align: center; padding-top: 3px;">
+                    <a class="nav-link" href="/">HOME</a>
+                </li>
+                <li class="nav-item" style="width: 200px; text-align: center; padding-top: 3px;">
+                    <a class="nav-link" href="/sale">SALE</a>
+                </li>
+                <li class="nav-item" style="width: 200px; text-align: center; padding-top: 3px;">
+                    <a class="nav-link" href="#" data-toggle="modal" data-target="#suggerisciFilmModal">PROPONI FILM</a>
+                </li>
             </ul>
         </div>
     </div>
@@ -157,8 +153,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="adminLoginForm" action="/login" method="POST">
-                    <input type="hidden" id="filmId" name="filmId">
+                <form id="adminLoginForm" th:action="@{/login(redirectUrl=${'/dettaglio?id=' + film.id})}" method="POST">
                     <div class="form-group">
                         <label for="email">Email</label>
                         <input type="email" class="form-control" id="email" name="email" required>
@@ -174,14 +169,6 @@
     </div>
 </div>
 
-<script>
-    function setFilmIdLogin(id) {
-        document.getElementById('filmId').value = id;
-        document.getElementById('adminLoginForm').setAttribute('action', '/login?redirectUrl=/dettaglio?id=' + id);
-    }
-</script>
-
-
 <div class="modal fade" id="aggiungiAdminModal" tabindex="-1" aria-labelledby="aggiungiAdminModalLabel"
      aria-hidden="true">
     <div class="modal-dialog">
@@ -193,15 +180,14 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="aggiungiAdminForm" action="/register" method="POST">
+                <form id="aggiungiAdminForm" th:action="@{/register(redirectUrl=${'/dettaglio?id=' + film.id})}" method="POST">
                     <div class="form-group">
                         <label for="email">Email</label>
                         <input type="email" class="form-control" id="emailAdminNuovo" name="emailAdminNuovo" required>
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <input type="password" class="form-control" id="passwordAdminNuovo" name="passwordAdminNuovo"
-                               required>
+                        <input type="password" class="form-control" id="passwordAdminNuovo" name="passwordAdminNuovo" required>
                     </div>
                     <button type="submit" class="btn btn-primary">Registra</button>
                 </form>
@@ -209,13 +195,6 @@
         </div>
     </div>
 </div>
-
-<script>
-    function setFilmIdRegister(id) {
-        document.getElementById('aggiungiAdminForm').setAttribute('action', '/register?redirectUrl=/dettaglio?id=' + id);
-    }
-</script>
-
 
 <div class="modal fade" id="suggerisciFilmModal" tabindex="-1" aria-labelledby="suggerisciFilmModalLabel"
      aria-hidden="true">
@@ -228,16 +207,14 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="suggerimentoForm" action="/suggerimento" method="POST">
-                    <input type="hidden" id="filmSuggeritoId" name="filmSuggeritoId">
+                <form id="suggerisciFilmForm" th:action="@{/suggerimento(redirectUrl=${'/dettaglio?id=' + film.id})}" method="POST">
                     <div class="form-group">
-                        <label for="titolo_film">Titolo del Film</label>
-                        <input type="text" class="form-control" id="titolo_film" name="titoloFilm" required>
+                        <label for="titoloFilm">Titolo del Film</label>
+                        <input type="text" class="form-control" id="titoloFilm" name="titoloFilm" required>
                     </div>
                     <div class="form-group">
-                        <label for="email_suggerimento">La tua Email</label>
-                        <input type="email" class="form-control" id="email_suggerimento" name="emailSuggerimento"
-                               required>
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="emailSuggerimento" name="emailSuggerimento" required>
                     </div>
                     <button type="submit" class="btn btn-primary">Invia Suggerimento</button>
                 </form>
@@ -245,22 +222,15 @@
         </div>
     </div>
 </div>
-<script>
-    function setFilmIdSuggerimento(id) {
-        document.getElementById('filmSuggeritoId').value = id;
-        document.getElementById('suggerimentoForm').setAttribute('action', '/suggerimento?redirectUrl=/dettaglio?id=' + id);
-    }
-</script>
 
-
-<footer class="text-white text-center py-3">
-    <div class="container">
+<footer class="py-4 bg-dark text-white">
+    <div class="container text-center">
         <p>&copy; 2024 Festival Cinekids. Tutti i diritti riservati.</p>
     </div>
 </footer>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
