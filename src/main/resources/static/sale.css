@@ -6,6 +6,7 @@ body {
 
 .risultati {
     position: relative;
+    top: -30px;
 }
 
 .errore {

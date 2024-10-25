@@ -4,8 +4,9 @@ body {
     overflow-x: hidden;
 }
 
-.risutati {
+.risultati {
     position: relative;
+    top: -30px;
 }
 
 .errore {
