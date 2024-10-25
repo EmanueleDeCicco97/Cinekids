@@ -1,5 +1,5 @@
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: "Cairo", sans-serif;
     margin: 0; /* Rimuove margini dal body */
 }
 
@@ -141,43 +141,38 @@ body {
     opacity: 1;
 }
 
-/* Uniformità per i pulsanti "Dettagli," "Modifica," e "Elimina" */
-.card-details a {
+/* Pulsanti Dettagli, Modifica ed Elimina */
+.card-details a,
+.card-details button {
     display: inline-block;
-    width: 100%;
-    max-width: 150px;
-    padding: 12px 0;
-    box-sizing: border-box;
-    border-radius: 4px;
-    text-align: center;
-    color: white;
-    font-size: 1rem;
-    font-weight: bold;
-    text-decoration: none;
-    margin: 5px 0;
+    width: 100%; /* Pulsante occupa tutta la larghezza disponibile */
+    max-width: 150px; /* Larghezza massima per i pulsanti */
+    padding: 12px 0; /* Padding uniforme */
+    box-sizing: border-box; /* Assicura che il padding non influisca sulla larghezza totale */
+    border-radius: 4px; /* Bordo arrotondato */
+    text-align: center; /* Allinea il testo al centro */
+    color: white; /* Colore del testo */
+    font-size: 1rem; /* Dimensione del font uniforme */
+    font-weight: bold; /* Testo in grassetto */
+    text-decoration: none; /* Rimuove la sottolineatura */
+    margin: 5px 0; /* Margine uniforme */
 }
 
-.card-details .btn-info,
-.card-details .btn-warning,
-.card-details .btn-danger {
-    width: 100%;
-    max-width: 150px;
-    padding: 12px 0;
-    font-size: 1rem;
-    font-weight: bold;
-    text-align: center;
+/* Classe aggiuntiva per il pulsante Dettagli quando admin è NULL */
+.pulsante-dettagli {
+    max-width: 500px; /* Larghezza massima aumentata per il pulsante Dettagli */
 }
 
 /* Stili specifici per ciascun pulsante */
-.card-details .btn-info {
+.btn-info {
     background-color: #17a2b8;
 }
 
-.card-details .btn-warning {
+.btn-warning {
     background-color: #ffc107;
 }
 
-.card-details .btn-danger {
+.btn-danger {
     background-color: #dc3545;
 }
 
