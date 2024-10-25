@@ -3,12 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-          content="1° Festival Cinekids - Proiezione di celebri pellicole con protagonisti bambini e ragazzi">
+    <meta name="description" content="1° Festival Cinekids - Proiezione di celebri pellicole con protagonisti bambini e ragazzi">
     <title>Festival Cinekids</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="dettaglio.css">
     <style>
+        li {
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+
         .card {
             width: 100%;
             max-width: 600px;
@@ -51,26 +55,25 @@
 
 <header class="custom-header py-4">
     <div class="container">
-        <div class="row justify-content-between align-items-center">
+        <div class="row justify-content-between align-items-center" style="margin-top: 30px">
             <div class="col-md-4">
-                <img id="logo" src="logo.png">
+                <img id="logo" src="logo.png" style="position: absolute; border-radius: 30%;">
             </div>
-            <div th:if="${error != null}" th:text="${error}" class="alert alert-danger" role="alert" style="position: absolute; left: 43%"></div>
-            <div th:if="${successo != null}" th:text="${error}" class="alert alert-success" role="alert" style="position: absolute; left: 35%;"></div>
+
+            <div class="risultati">
+                <div th:if="${error != null}" th:text="${error}" class="alert-danger errore" role="alert"></div>
+                <div th:if="${successo != null}" th:text="${successo}" class="alert-success successo" role="alert"></div>
             </div>
+
             <div class="col-md-4 text-right">
                 <div th:if="${admin != null}">
-                    <a th:href="@{/logout(redirectUrl=${'/dettaglio?id=' + film.id})}" class="text-white">Logout</a>
+                    <a href="/logout" class="text-white">Logout</a>
                 </div>
                 <div th:if="${admin != null}">
-                    <a href="#" class="text-white" data-toggle="modal" data-target="#aggiungiAdminModal"
-                       th:onclick="'setFilmIdRegister(' + ${film.id} + ')'">Aggiungi admin</a>
-
+                    <a href="#" class="text-white" data-toggle="modal" data-target="#aggiungiAdminModal">Aggiungi admin</a>
                 </div>
                 <div th:if="${admin == null}">
-                    <a href="#" class="text-white" data-toggle="modal" data-target="#adminModal"
-                       th:onclick="'setFilmIdLogin(' + ${film.id} + ')'">Area Admin</a>
-
+                    <a href="#" class="text-white" data-toggle="modal" data-target="#adminModal" style="position: absolute; width: 200px; padding-top: 50px">Area Admin</a>
                 </div>
             </div>
         </div>
@@ -82,6 +85,7 @@
     </div>
 </header>
 
+
 <nav class="navbar navbar-expand-lg custom-navbar">
     <div class="container">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
@@ -90,14 +94,11 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mx-auto">
-                <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="/sale">Sale</a></li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link" data-toggle="modal" data-target="#suggerisciFilmModal"
-                       th:onclick="'setFilmIdSuggerimento(' + ${film.id} + ')'">
-                        Suggerimento
-                    </a>
-                </li>
+                <li class="nav-item" style="width: 200px; text-align: center; padding-top: 3px;"><a class="nav-link" href="/">HOME</a></li>
+                <li class="nav-item" style="transform: scaleY(2)"><a class="nav-link" href="#">|</a></li>
+                <li class="nav-item" style="width: 200px; text-align: center; padding-top: 3px;"><a class="nav-link" href="/sale">SALE</a></li>
+                <li class="nav-item" style="transform: scaleY(2)"><a class="nav-link" href="#">|</a></li>
+                <li class="nav-item" style="width: 200px; text-align: center; padding-top: 3px;"><a class="nav-link" href="#" data-toggle="modal" data-target="#suggerisciFilmModal">PROPONI FILM</a></li>
             </ul>
         </div>
     </div>

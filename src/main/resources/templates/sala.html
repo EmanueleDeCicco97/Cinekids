@@ -7,27 +7,37 @@
     <title>Festival Cinekids - Le sale</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="sale.css">
+
+    <style>
+        li {
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+    </style>
 </head>
 <body>
 
 <header class="custom-header py-4">
     <div class="container">
-        <div class="row justify-content-between align-items-center">
+        <div class="row justify-content-between align-items-center" style="margin-top: 30px">
             <div class="col-md-4">
                 <img id="logo" src="logo.png" style="position: absolute; border-radius: 30%;">
             </div>
-            <div th:if="${error != null}" th:text="${error}" class="alert alert-danger" role="alert" style="position: absolute; left: 43%"></div>
-            <div th:if="${successo != null}" th:text="${error}" class="alert alert-success" role="alert" style="position: absolute; left: 35%;"></div>
+
+            <div class="risultati">
+                <div th:if="${error != null}" th:text="${error}" class="alert-danger errore" role="alert"></div>
+                <div th:if="${successo != null}" th:text="${successo}" class="alert-success successo" role="alert"></div>
+            </div>
 
             <div class="col-md-4 text-right">
                 <div th:if="${admin != null}">
-                    <a href="/logout?redirectUrl=/sale" class="text-white">Logout</a>
+                    <a href="/logout" class="text-white">Logout</a>
                 </div>
                 <div th:if="${admin != null}">
                     <a href="#" class="text-white" data-toggle="modal" data-target="#aggiungiAdminModal">Aggiungi admin</a>
                 </div>
                 <div th:if="${admin == null}">
-                    <a href="#" class="text-white" data-toggle="modal" data-target="#adminModal">Area Admin</a>
+                    <a href="#" class="text-white" data-toggle="modal" data-target="#adminModal" style="position: absolute; width: 200px; padding-top: 50px">Area Admin</a>
                 </div>
             </div>
         </div>
@@ -38,6 +48,7 @@
         </div>
     </div>
 </header>
+
 
 <nav class="navbar navbar-expand-lg custom-navbar">
     <div class="container">
