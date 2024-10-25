@@ -11,7 +11,7 @@ body {
 
 #presentazione,
 #film {
-    background-color: #E5E3E4 !important;
+    background: radial-gradient(circle, rgba(11, 59, 111, 0.66) 59%, rgb(0, 0, 0) 100%) !important;
 }
 
 #presentazione {
@@ -205,7 +205,7 @@ body {
 }
 
 footer {
-    background-color: #4A6D6B;
+    background-color: #E9E7E8;
 }
 
 #logo {
