@@ -47,6 +47,9 @@ public class HomeController {
                         @RequestParam("password") String password,
                         @RequestParam(name = "redirectUrl", defaultValue = "/") String redirectUrl) {
         if (!adminService.loginUtente(email, password, session)) {
+            System.out.println(redirectUrl);
+            if(redirectUrl.contains("/dettaglio?id="))
+                return "redirect:" + redirectUrl + "&error=Credenziali sbagliate. Riprova.";
             return "redirect:" + redirectUrl + "?error=Credenziali sbagliate. Riprova.";
         }
         return "redirect:" + redirectUrl;
@@ -66,8 +69,12 @@ public class HomeController {
                                 @RequestParam("passwordAdminNuovo") String password,
                                 @RequestParam(name = "redirectUrl", defaultValue = "/") String redirectUrl) {
 
-        if (adminService.inserisciAdmin(email, password))
-            return "redirect:" + redirectUrl + "?error=Esiste già un Admin con la stessa email inserita";
+        if (adminService.inserisciAdmin(email, password)){
+            if(redirectUrl.contains("/dettaglio?id=")) {
+                return "redirect:" + redirectUrl + "&error=Esiste gia un Admin con la stessa email inserita";
+            }
+            return "redirect:" + redirectUrl + "?error=Esiste gia un Admin con la stessa email inserita";
+        }
 
         return "redirect:" + redirectUrl;
     }
@@ -78,9 +85,12 @@ public class HomeController {
                                        @RequestParam("emailSuggerimento") String email,
                                        @RequestParam(name = "redirectUrl", defaultValue = "/") String redirectUrl) {
 
-        if (!suggerimentoService.inserisciSuggerimento(titolo, email))
-            return "redirect:" + redirectUrl + "?error=Suggerimento già inserito per questa email, puoi inviarne solo uno all'anno.";
-
+        if (!suggerimentoService.inserisciSuggerimento(titolo, email)) {
+            if (redirectUrl.contains("/dettaglio?id=")) {
+                return "redirect:" + redirectUrl + "&error=Suggerimento gia inserito per questa email, puoi inviarne solo uno all'anno";
+            }
+            return "redirect:" + redirectUrl + "?error=Suggerimento gia inserito per questa email, puoi inviarne solo uno all'anno.";
+        }
 
         return "redirect:" + redirectUrl + "?successo=Inserimento avvenuto con successo!";
     }

@@ -23,17 +23,18 @@ public class DettaglioController {
 
     @Autowired
     private FilmService filmService;
-    @Autowired
-    private ProiezioneService proiezioniService;
 
 
     @GetMapping()
     public String dettaglio(Model model, @RequestParam(name = "id") int idFilm,
-                                         @RequestParam(name = "error", required = false) String error, HttpSession session) {
+                                         HttpSession session,
+                                         @RequestParam(name = "error", required = false) String error,
+                                         @RequestParam(name = "successo", required = false) String successo) {
 
         Admin admin = (Admin) session.getAttribute("admin");
         model.addAttribute("admin", admin);
         model.addAttribute("error", error);
+        model.addAttribute("successo", successo);
 
 
         Film film = filmService.dettaglioFilm(idFilm);
