@@ -47,7 +47,7 @@ public class HomeController {
                         @RequestParam("password") String password,
                         @RequestParam(name = "redirectUrl", defaultValue = "/") String redirectUrl) {
         if (!adminService.loginUtente(email, password, session)) {
-            return "redirect:/?error=Credenziali sbagliate. Riprova.";
+            return "redirect:" + redirectUrl + "?error=Credenziali sbagliate. Riprova.";
         }
         return "redirect:" + redirectUrl;
     }
@@ -67,7 +67,7 @@ public class HomeController {
                                 @RequestParam(name = "redirectUrl", defaultValue = "/") String redirectUrl) {
 
         if (adminService.inserisciAdmin(email, password))
-            return "redirect:/?error=Esiste già un Admin con la stessa email inserita";
+            return "redirect:" + redirectUrl + "?error=Esiste già un Admin con la stessa email inserita";
 
         return "redirect:" + redirectUrl;
     }
@@ -79,10 +79,10 @@ public class HomeController {
                                        @RequestParam(name = "redirectUrl", defaultValue = "/") String redirectUrl) {
 
         if (!suggerimentoService.inserisciSuggerimento(titolo, email))
-            return "redirect:/?errorSuggerimento=Suggerimento già inserito per questa email, puoi inviarne solo uno all'anno.";
+            return "redirect:" + redirectUrl + "?error=Suggerimento già inserito per questa email, puoi inviarne solo uno all'anno.";
 
 
-        return "redirect:" + redirectUrl+"?successo=Inserimento avvenuto con successo!";
+        return "redirect:" + redirectUrl + "?successo=Inserimento avvenuto con successo!";
     }
 
 }
