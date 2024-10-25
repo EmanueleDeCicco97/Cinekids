@@ -1,12 +1,28 @@
+body {
+    font-family: "Tahoma","Cairo", sans-serif;
+    margin: 0; /* Rimuove margini dal body */
+    overflow-x: hidden;
+}
+
+.navbar {
+    font-size: 1.25rem;
+    font-weight: 700;
+}
 
 #presentazione,
-#film {
-    background-color: #f5e5c6 !important;
+#sale {
+    background: radial-gradient(circle, rgba(11, 59, 111, 0.66) 59%, rgb(0, 0, 0) 100%) !important;
+}
+
+#presentazione {
+    width: 100%;
+    transform: scaleX(1.02) ;
+    padding: 0;
 }
 
 
 .custom-header {
-    background-color: #57968f;
+    background-color: #4A6D6B;
     color: white;
 }
 
@@ -17,7 +33,8 @@
 
 
 .custom-navbar {
-    background-color: #3a4e4e;
+    background-color: #5E978C;
+    margin-bottom: 0;
 }
 
 .custom-navbar .nav-link {
@@ -127,4 +144,13 @@
 /* Margine automatico in alto per l'allineamento verticale */
 .mt-auto {
     margin-top: auto;
+}
+
+footer {
+    background-color: #E9E7E8;
+    color: darkslategrey;
+}
+
+#logo {
+    max-width: 25%;
 }
