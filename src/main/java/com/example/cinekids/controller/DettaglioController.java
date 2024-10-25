@@ -29,8 +29,8 @@ public class DettaglioController {
 
     @GetMapping()
     public String dettaglio(Model model, @RequestParam(name = "id") int idFilm,
-                                          @RequestParam(name = "error", required = false) String error, HttpSession session,
-                            @RequestParam(name = "errorSuggerimento", required = false) String errorSuggerimento) {
+                                         @RequestParam(name = "error", required = false) String error, HttpSession session,
+                                         @RequestParam(name = "errorSuggerimento", required = false) String errorSuggerimento) {
 
         Admin admin = (Admin) session.getAttribute("admin");
         model.addAttribute("admin", admin);
