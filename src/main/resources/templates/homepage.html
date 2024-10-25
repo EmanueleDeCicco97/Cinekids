@@ -120,7 +120,7 @@
 
 <section id="film" class="py-5 bg-light">
     <div class="container">
-        <h2 class="text-center mb-5">I Film in Proiezione</h2>
+        <h2 class="text-center mb-5">I FILM IN PROIEZIONE</h2>
         <div class="row justify-content-center">
             <div class="col-md-4 col-lg-3 col-6 mb-4" th:each="film : ${films}">
                 <div class="card h-100 text-decoration-none">
@@ -137,11 +137,12 @@
                                     th:onclick="'setDeleteId(' + ${film.id} + ')'">Elimina</button>
                         </div>
                     </div>
+                    <div class="card-title" th:text="${film.titolo}"></div> <!-- Titolo del film -->
                 </div>
             </div>
 
             <div class="col-md-4 col-lg-3 col-6 mb-4" th:if="${admin != null}">
-                <div class="card h-100 d-flex align-items-center justify-content-center">
+                <div class="card h-100 d-flex align-items-center justify-content-center no-overlay"> <!-- Aggiunta classe no-overlay -->
                     <a th:href="@{/film/aggiungiFilmPagina}"
                        class="btn d-flex flex-column align-items-center justify-content-center"
                        style="width: 100%; height: 100%; text-decoration: none;">
@@ -153,6 +154,8 @@
         </div>
     </div>
 </section>
+
+
 
 
 <div class="modal fade" id="adminModal" tabindex="-1" aria-labelledby="adminModalLabel" aria-hidden="true">
