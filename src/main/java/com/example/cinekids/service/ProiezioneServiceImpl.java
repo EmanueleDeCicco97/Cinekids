@@ -58,7 +58,7 @@ public class ProiezioneServiceImpl implements ProiezioneService {
         film.setTitolo(titolo);
         film.setGenere(genere);
         film.setRegista(regista);
-        film.setAnno_uscita(annoDiUscita);
+        film.setAnnoDiUscita(annoDiUscita);
         film.setSinossi(sinossi);
         film.setTrailer(trailer);
         filmService.insericiFilm(film, locandina);

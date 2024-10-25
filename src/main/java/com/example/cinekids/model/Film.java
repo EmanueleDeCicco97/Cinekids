@@ -22,7 +22,7 @@ public class Film {
     private String regista;
 
     @Column(name = "anno_uscita", nullable = false)
-    private int anno_uscita;
+    private int annoDiUscita;
 
     @Column(name = "sinossi", nullable = false)
     private String sinossi;
@@ -72,12 +72,12 @@ public class Film {
         return sinossi;
     }
 
-    public int getAnno_uscita() {
-        return anno_uscita;
+    public int getAnnoDiUscita() {
+        return annoDiUscita;
     }
 
-    public void setAnno_uscita(int anno_uscita) {
-        this.anno_uscita = anno_uscita;
+    public void setAnnoDiUscita(int annoDiUscita) {
+        this.annoDiUscita = annoDiUscita;
     }
 
     public void setSinossi(String sinossi) {
