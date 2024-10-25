@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -34,22 +35,34 @@ public class SalaController {
     @GetMapping()
     public String gethome(Model model, HttpSession session,
                           @RequestParam(name = "error", required = false) String error,
-                          @RequestParam(name = "errorSuggerimento", required = false) String errorSuggerimento,
-                          @RequestParam(name = "errorAdmin", required = false) String errorAdmin) {
+                          @RequestParam(name = "successo", required = false) String successo)
+    {
         List<Sala> sale = salaService.elencoSala();
         Admin admin = (Admin) session.getAttribute("admin");
         model.addAttribute("admin", admin);
         model.addAttribute("sale", sale);
         model.addAttribute("error", error);
-        model.addAttribute("errorSuggerimento", errorSuggerimento);
-        model.addAttribute("errorAdmin", errorAdmin);
+        model.addAttribute("successo", successo);
+
 
         return "sala";
     }
 
+    @PostMapping("/aggiungiSala")
+    public String aggiungiSala(@RequestParam("citta") String citta,
+                               @RequestParam("nomeSala") String nomeSala,
+                               @RequestParam("fotoSala") MultipartFile fotoSala) {
+
+//        salaService.inserisciSala();
+
+        return "redirect:/sale";
+    }
+
+
+
     @GetMapping("/eliminaSala")
     public String eliminaSala(@RequestParam("id") int idSala) {
         salaService.eliminaSala(idSala);
-        return "redirect:/sale";
+        return "redirect:/sale?successo=Eliminazione effettuata con successo";
     }
 }

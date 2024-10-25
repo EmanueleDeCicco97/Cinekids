@@ -24,23 +24,15 @@ public class FilmController {
     private ProiezioneService proiezioneService;
 
     @GetMapping("/modificaFilmPagina")
-    public String modificaFilmPagina(Model model, HttpSession session,
-                                     @RequestParam(name = "error", required = false) String error,
-                                     @RequestParam(name = "errorSuggerimento", required = false) String errorSuggerimento,
-                                     @RequestParam(name = "id") int idFilm,
-                                     @RequestParam(name = "errorAdmin", required = false) String errorAdmin) {
+    public String modificaFilmPagina(Model model, HttpSession session,@RequestParam(name = "id") int idFilm) {
 
 
         Admin admin = (Admin) session.getAttribute("admin");
         if (admin == null) {
-            return "redirect:/?errorAccessoPagina";
+            return "redirect:/?error=Non Hai i permessi per accedere alla pagina.";
         }
 
         model.addAttribute("admin", admin);
-        model.addAttribute("error", error);
-        model.addAttribute("errorSuggerimento", errorSuggerimento);
-        model.addAttribute("errorAdmin", errorAdmin);
-
         // Recupera i dettagli del film
         Film film = filmService.dettaglioFilm(idFilm);
         model.addAttribute("film", film);
@@ -70,23 +62,19 @@ public class FilmController {
         filmService.insericiFilm(film, locandina);
 
 
-        return "redirect:/";
+        return "redirect:/?successo=Modifica avvenuta con successo!";
     }
 
     @GetMapping("/aggiungiFilmPagina")
     public String aggiungiFilmPagina(Model model, HttpSession session,
-                                     @RequestParam(name = "error", required = false) String error,
-                                     @RequestParam(name = "errorSuggerimento", required = false) String errorSuggerimento,
-                                     @RequestParam(name = "errorAdmin", required = false) String errorAdmin) {
+                                     @RequestParam(name = "error", required = false) String error) {
 
         Admin admin = (Admin) session.getAttribute("admin");
         if (admin == null) {
-            return "redirect:/?errorAccessoPagina";
+            return "redirect:/?error=Non Hai i permessi per accedere alla pagina.";
         }
         model.addAttribute("admin", admin);
         model.addAttribute("error", error);
-        model.addAttribute("errorSuggerimento", errorSuggerimento);
-        model.addAttribute("errorAdmin", errorAdmin);
 
 
         return "aggiungi_film";
@@ -113,6 +101,12 @@ public class FilmController {
 
         proiezioneService.creaProiezioniPerTutteLeSale(titolo, genere, regista, annoDiUscita, sinossi, trailer, locandina, dataOra);
 
-        return "redirect:/";
+        return "redirect:/?successo=Inserimento avvenuto con successo!";
+    }
+
+    @GetMapping("/eliminaFilm")
+    public String eliminaFilm(@RequestParam("id") int idFilm) {
+        filmService.eliminaFilm(idFilm);
+        return "redirect:/?successo=Eliminazione avvenuta con successo!";
     }
 }

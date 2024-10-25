@@ -29,19 +29,14 @@ public class HomeController {
 
     @GetMapping()
     public String gethome(Model model, @RequestParam(name = "error", required = false) String error, HttpSession session,
-                          @RequestParam(name = "errorSuggerimento", required = false) String errorSuggerimento,
-                          @RequestParam(name = "errorAdmin", required = false) String errorAdmin,
-                          @RequestParam(name = "errorAccessoPagina", required = false) String errorAccessoPagina) {
+                          @RequestParam(name = "successo", required = false) String successo) {
 
         List<Film> films = filmService.elencoFilm();
         Admin admin = (Admin) session.getAttribute("admin");
         model.addAttribute("admin", admin);
         model.addAttribute("films", films);
         model.addAttribute("error", error);
-        model.addAttribute("errorSuggerimento", errorSuggerimento);
-        model.addAttribute("errorAdmin", errorAdmin);
-        model.addAttribute("errorAccessoPagina", errorAccessoPagina);
-
+        model.addAttribute("successo", successo);
 
         return "homepage";
     }
@@ -52,7 +47,7 @@ public class HomeController {
                         @RequestParam("password") String password,
                         @RequestParam(name = "redirectUrl", defaultValue = "/") String redirectUrl) {
         if (!adminService.loginUtente(email, password, session)) {
-            return "redirect:/?error";
+            return "redirect:/?error=Credenziali sbagliate. Riprova.";
         }
         return "redirect:" + redirectUrl;
     }
@@ -71,8 +66,8 @@ public class HomeController {
                                 @RequestParam("passwordAdminNuovo") String password,
                                 @RequestParam(name = "redirectUrl", defaultValue = "/") String redirectUrl) {
 
-       if(adminService.inserisciAdmin(email, password))
-           return "redirect:/?errorAdmin";
+        if (adminService.inserisciAdmin(email, password))
+            return "redirect:/?error=Esiste già un Admin con la stessa email inserita";
 
         return "redirect:" + redirectUrl;
     }
@@ -84,15 +79,10 @@ public class HomeController {
                                        @RequestParam(name = "redirectUrl", defaultValue = "/") String redirectUrl) {
 
         if (!suggerimentoService.inserisciSuggerimento(titolo, email))
-            return "redirect:/?errorSuggerimento";
+            return "redirect:/?errorSuggerimento=Suggerimento già inserito per questa email, puoi inviarne solo uno all'anno.";
 
-        return "redirect:" + redirectUrl;
-    }
 
-    @GetMapping("/eliminaFilm")
-    public String eliminaFilm(@RequestParam("id") int idFilm) {
-        filmService.eliminaFilm(idFilm);
-        return "redirect:/";
+        return "redirect:" + redirectUrl+"?successo=Inserimento avvenuto con successo!";
     }
 
 }

@@ -25,18 +25,8 @@
             <div class="col-md-4">
                 <img id="logo" src="logo.png" style="position: absolute; border-radius: 30%;">
             </div>
-            <div th:if="${error != null}" class="alert alert-danger" role="alert" style="position: absolute; left: 43%">
-                Credenziali sbagliate. Riprova.
-            </div>
-            <div th:if="${errorSuggerimento != null}" class="alert alert-danger" role="alert" style="position: absolute; left: 35%">
-                Suggerimento già inserito per questa email, puoi inviarne solo uno all'anno.
-            </div>
-            <div th:if="${errorAdmin != null}" class="alert alert-danger" role="alert" style="position: absolute; left: 35%">
-                Esiste già un Admin con la stessa email inserita
-            </div>
-            <div th:if="${errorAccessoPagina != null}" class="alert alert-danger" role="alert" style="position: absolute; left: 35%">
-                    Non Hai i permessi per accedere alla pagina.
-            </div>
+            <div th:if="${error != null}" th:text="${error}" class="alert alert-danger" role="alert" style="position: absolute; left: 43%"></div>
+            <div th:if="${successo != null}" th:text="${error}" class="alert alert-success" role="alert" style="position: absolute; left: 35%;"></div>
 
             <div class="col-md-4 text-right">
                 <div th:if="${admin != null}">
@@ -275,7 +265,7 @@
 
 <script>
     function setDeleteId(id) {
-        document.getElementById('btnConfermaEliminazione').setAttribute('href', '/eliminaFilm?id=' + id);
+        document.getElementById('btnConfermaEliminazione').setAttribute('href', '/film/eliminaFilm?id=' + id);
     }
 </script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
