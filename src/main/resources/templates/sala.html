@@ -80,10 +80,10 @@
                                     <div th:if="${admin != null}">
                                         <button type="button" class="btn btn-danger mt-2"
                                                 data-toggle="modal" data-target="#confermaEliminazioneModal"
-                                                th:onclick="'setDeleteId(' + ${sala.id} + ')'">Elimina Sala</button>
+                                                th:onclick="'setDeleteId(' + ${sala.id} + ')'">Elimina Sala
+                                        </button>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -92,7 +92,7 @@
 
             <div class="col-md-3 col-6 mb-4" th:if="${admin != null}">
                 <div class="card h-100 d-flex align-items-center justify-content-center">
-                    <a th:href="@{/inserisciSala}"
+                    <a th:href="@{/aggiungiSala}"
                        class="btn d-flex flex-column align-items-center justify-content-center"
                        style="width: 100%; height: 100%; text-decoration: none;">
                         <span style="font-size: 5rem; color: #007bff;">+</span>
