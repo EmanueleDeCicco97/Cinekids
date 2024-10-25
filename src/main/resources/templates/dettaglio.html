@@ -7,42 +7,6 @@
     <title>Festival Cinekids</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="dettaglio.css">
-    <style>
-        li {
-            padding-left: 5px;
-            padding-right: 5px;
-        }
-        .card {
-            width: 100%;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        .card-body {
-            padding: 20px;
-        }
-        .card-title {
-            font-size: 24px;
-        }
-        .card-text {
-            font-size: 16px;
-        }
-        .card img {
-            max-height: 400px;
-            object-fit: cover;
-        }
-        .iframe-container {
-            position: relative;
-            overflow: hidden;
-            padding-top: 56.25%;
-        }
-        .iframe-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-    </style>
 </head>
 <body>
 
@@ -78,6 +42,7 @@
     </div>
 </header>
 
+
 <nav class="navbar navbar-expand-lg custom-navbar">
     <div class="container">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
@@ -86,62 +51,52 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mx-auto">
-                <li class="nav-item" style="width: 200px; text-align: center; padding-top: 3px;">
-                    <a class="nav-link" href="/">HOME</a>
-                </li>
-                <li class="nav-item" style="width: 200px; text-align: center; padding-top: 3px;">
-                    <a class="nav-link" href="/sale">SALE</a>
-                </li>
-                <li class="nav-item" style="width: 200px; text-align: center; padding-top: 3px;">
-                    <a class="nav-link" href="#" data-toggle="modal" data-target="#suggerisciFilmModal">PROPONI FILM</a>
-                </li>
+                <li class="nav-item" style="width: 200px; text-align: center; padding-top: 3px;"><a class="nav-link" href="/">HOME</a></li>
+                <li class="nav-item" style="transform: scaleY(2)"><a class="nav-link" href="#">|</a></li>
+                <li class="nav-item" style="width: 200px; text-align: center; padding-top: 3px;"><a class="nav-link" href="/sale">SALE</a></li>
+                <li class="nav-item" style="transform: scaleY(2)"><a class="nav-link" href="#">|</a></li>
+                <li class="nav-item" style="width: 200px; text-align: center; padding-top: 3px;"><a class="nav-link" href="#" data-toggle="modal" data-target="#suggerisciFilmModal">PROPONI FILM</a></li>
             </ul>
         </div>
     </div>
 </nav>
 
-<div class="container mt-5 mb-5">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <img th:src="@{${film.locandina == null ? 'markerImage.png' : film.locandina}}" class="card-img-top"
-                     alt="Locandina di [[${film.titolo}]]">
-                <div class="card-body">
-
-                    <h5 class="card-title" th:text="${film.titolo}">Titolo Film</h5>
-                    <p class="card-text"><strong>Regista:</strong> <span th:text="${film.regista}">Nome Regista</span></p>
-                    <p class="card-text"><strong>Genere:</strong> <span th:text="${film.genere}">Genere</span></p>
-                    <p class="card-text"><strong>Anno di Uscita:</strong> <span th:text="${film.annoDiUscita}">Genere</span></p>
-                    <p class="card-text"><strong>Trama:</strong> <span th:text="${film.sinossi}">Sinossi</span></p>
-                    <p class="card-text"><strong>Trailer:</strong></p>
-                    <div class="iframe-container">
-                        <iframe th:src="@{${film.trailer == null ? 'comingsoon.jpg': film.trailer}}"
-                                frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                    </div>
-
-                    <p class="card-text"><strong>Proiezioni:</strong></p>
-                    <table class="table table-bordered">
-                        <thead>
-                        <tr>
-                            <th>Data e Ora</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr th:each="data : ${date}">
-                            <td th:text="${#temporals.format(data, 'dd/MM/yyyy HH:mm')}"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="1" class="text-center">In tutte le sale presenti in Cinekids</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+<main class="card p-3">
+    <div class="card-content d-flex">
+        <div class="card-image flex-shrink-0">
+            <img th:src="@{${film.locandina == null ? 'markerImage.png' : film.locandina}}" class="card-img-left" alt="Locandina di [[${film.titolo}]]">
+        </div>
+        <div class="card-details">
+            <h5 class="card-title" th:text="${film.titolo}">Titolo Film</h5>
+            <p><strong>Regista:</strong> <span th:text="${film.regista}">Nome Regista</span></p>
+            <p><strong>Genere:</strong> <span th:text="${film.genere}">Genere</span></p>
+            <p><strong>Anno di Uscita:</strong> <span th:text="${film.annoDiUscita}">Anno</span></p>
+            <p><strong>Trama:</strong> <span th:text="${film.sinossi}">Sinossi</span></p>
         </div>
     </div>
-</div>
+    <div class="trailer-proiezioni mt-3">
+        <p><strong>Trailer:</strong></p>
+        <div class="iframe-container mb-3">
+            <iframe th:src="@{${film.trailer == null ? 'comingsoon.jpg' : film.trailer}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <p><strong>Proiezioni:</strong></p>
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>Data e Ora</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="data : ${date}">
+                <td th:text="${#temporals.format(data, 'dd/MM/yyyy HH:mm')}"></td>
+            </tr>
+            <tr>
+                <td colspan="1" class="text-center">In tutte le sale presenti in Cinekids</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
 
 <div class="modal fade" id="adminModal" tabindex="-1" aria-labelledby="adminModalLabel" aria-hidden="true">
     <div class="modal-dialog">

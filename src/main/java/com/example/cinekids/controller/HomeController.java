@@ -47,8 +47,10 @@ public class HomeController {
                         @RequestParam("password") String password,
                         @RequestParam(name = "redirectUrl", defaultValue = "/") String redirectUrl) {
         if (!adminService.loginUtente(email, password, session))
-
-            return "redirect:" + redirectUrl + "?error=Credenziali sbagliate. Riprova.";
+            if (redirectUrl.contains("/dettaglio?id="))
+                return "redirect:" + redirectUrl + "&error=Credenziali sbagliate. Riprova.";
+            else
+                return "redirect:" + redirectUrl + "?error=Credenziali sbagliate. Riprova.";
 
         return "redirect:" + redirectUrl;
     }

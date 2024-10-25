@@ -1,10 +1,10 @@
 body {
-    font-family: "Tahoma", "Cairo", sans-serif;
-    margin: 0;
+    font-family: "Cairo", sans-serif;
+    margin: 0; /* Rimuove margini dal body */
     overflow-x: hidden;
 }
 
-.errori {
+.risutati {
     position: relative;
 }
 
@@ -16,9 +16,28 @@ body {
     width: auto;
     transform: translate(-50%, -50%);
     background-color: #ff4040;
-    padding: 20px;
+    padding: 15px;
     z-index: 10;
     white-space: nowrap;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border: 2px solid white;
+}
+
+.successo {
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: auto;
+    transform: translate(-50%, -50%);
+    background-color: #4dff40;
+    padding: 15px;
+    z-index: 10;
+    white-space: nowrap;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border: 2px solid white;
 }
 
 .navbar {
@@ -33,7 +52,7 @@ body {
 
 #presentazione {
     width: 100%;
-    transform: scaleX(1.02);
+    transform: scaleX(1.02) ;
     padding: 0;
 }
 
@@ -58,7 +77,7 @@ body {
     left: 0;
     text-align: left;
     font-weight: bold;
-    font-family: 'Cairo', sans-serif;
+    font-family: 'Arial', sans-serif;
     background-color: transparent;
     z-index: 5;
     position: absolute;
@@ -96,12 +115,6 @@ body {
 
 .custom-navbar .nav-link {
     color: white;
-    transition: background-color 0.3s, color 0.3s; /* Aggiunto per l'effetto hover */
-}
-
-.custom-navbar .nav-link:hover {
-    background-color: rgba(255, 255, 255, 0.3); /* Colore di sfondo su hover */
-    color: #ffffff; /* Colore del testo su hover */
 }
 
 .nav {
@@ -110,42 +123,15 @@ body {
     padding: 16px;
 }
 
-#film h2 {
-    color: white; /* Imposta il testo del titolo "I FILM IN PROIEZIONE" in bianco */
-}
-
 .card {
     position: relative;
     display: flex;
     flex-direction: column;
-    height: 400px; /* Imposta un'altezza fissa per le card */
+    height: 100%;
     cursor: pointer;
     transition: transform 0.3s;
-    max-width: 500px; /* Aumenta la larghezza massima della card */
+    max-width: 400px;
     margin: auto;
-    background-color: #fff; /* Assicurati che la card abbia uno sfondo bianco */
-    overflow: hidden; /* Assicura che il contenuto non esca dalla card */
-}
-
-.card-title {
-    position: absolute; /* Posiziona il titolo sopra la card */
-    bottom: 10px; /* Spaziatura dal fondo della card */
-    left: 10px; /* Spaziatura a sinistra */
-    color: white; /* Colore del testo del titolo */
-    z-index: 2; /* Assicurati che il titolo sia sopra il gradiente */
-    font-size: 1.8rem; /* Aumenta la dimensione del font per il titolo */
-    font-weight: bold; /* Rende il titolo più in grassetto */
-}
-
-.card::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 50%; /* Cambia l'altezza del gradiente in base alle tue preferenze */
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.3), transparent);
-    z-index: 1; /* Assicurati che il gradiente stia sopra il contenuto della card */
 }
 
 .card:hover {
@@ -157,13 +143,10 @@ body {
     height: 100%;
     object-fit: cover;
     max-height: none;
-    z-index: 0; /* Assicurati che l'immagine sia sotto il gradiente */
 }
 
 .card-body {
     flex-grow: 1;
-    position: relative; /* Imposta la posizione relativa per la sovrapposizione del contenuto */
-    z-index: 2; /* Assicurati che il contenuto della card sia sopra il gradiente */
 }
 
 .card-overlay {
@@ -204,17 +187,22 @@ body {
 .card-details a,
 .card-details button {
     display: inline-block;
-    width: 100%;
-    max-width: 150px;
-    padding: 12px 0;
-    box-sizing: border-box;
-    border-radius: 4px;
-    text-align: center;
-    color: white;
-    font-size: 1rem;
-    font-weight: bold;
-    text-decoration: none;
-    margin: 5px 0;
+    width: 100%; /* Pulsante occupa tutta la larghezza disponibile */
+    max-width: 150px; /* Larghezza massima per i pulsanti */
+    padding: 12px 0; /* Padding uniforme */
+    box-sizing: border-box; /* Assicura che il padding non influisca sulla larghezza totale */
+    border-radius: 4px; /* Bordo arrotondato */
+    text-align: center; /* Allinea il testo al centro */
+    color: white; /* Colore del testo */
+    font-size: 1rem; /* Dimensione del font uniforme */
+    font-weight: bold; /* Testo in grassetto */
+    text-decoration: none; /* Rimuove la sottolineatura */
+    margin: 5px 0; /* Margine uniforme */
+}
+
+/* Classe aggiuntiva per il pulsante Dettagli quando admin è NULL */
+.pulsante-dettagli {
+    max-width: 500px; /* Larghezza massima aumentata per il pulsante Dettagli */
 }
 
 /* Stili specifici per ciascun pulsante */
@@ -258,277 +246,5 @@ footer {
 
 #logo {
     max-width: 25%;
-}
-
-/* Aggiungi la classe no-overlay per la card "Aggiungi Film" */
-.card.no-overlay::after {
-    content: none; /* Rimuove l'elemento pseudo per il gradiente */
-}
-body {
-    font-family: "Tahoma", "Cairo", sans-serif;
-    margin: 0;
-    overflow-x: hidden;
-}
-
-.errori {
-    position: relative;
-}
-
-.errore {
-    text-align: center;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: auto;
-    transform: translate(-50%, -50%);
-    background-color: #ff4040;
-    padding: 20px;
-    z-index: 10;
-    white-space: nowrap;
-}
-
-.navbar {
-    font-size: 1.25rem;
-    font-weight: 700;
-}
-
-#presentazione,
-#film {
-    background: radial-gradient(circle, rgba(11, 59, 111, 0.66) 59%, rgb(0, 0, 0) 100%) !important;
-}
-
-#presentazione {
-    width: 100%;
-    transform: scaleX(1.02);
-    padding: 0;
-}
-
-.carousel {
-    width: 100%;
-    height: 600px;
-}
-
-.carousel-inner img {
-    height: 600px;
-    object-fit: cover;
-}
-
-.carousel-control-prev,
-.carousel-control-next {
-    z-index: 10;
-}
-
-.carousel-caption {
-    color: white;
-    padding: 10px;
-    left: 0;
-    text-align: left;
-    font-weight: bold;
-    font-family: 'Cairo', sans-serif;
-    background-color: transparent;
-    z-index: 5;
-    position: absolute;
-    bottom: 20%;
-    padding-left: 60px;
-}
-
-.carousel-caption h2,
-.carousel-caption h5 {
-    font-size: 6rem;
-    font-weight: bold;
-    margin-left: 60px;
-}
-
-.carousel-caption p {
-    font-size: 1.3rem;
-    font-weight: bold;
-    margin-left: 60px;
-}
-
-.custom-header {
-    background-color: #4A6D6B;
-    color: white;
-}
-
-.custom-header .nav-link,
-.custom-header .alert {
-    color: white;
-}
-
-.custom-navbar {
-    background-color: #5E978C;
-    margin-bottom: 0;
-}
-
-.custom-navbar .nav-link {
-    color: white;
-    transition: background-color 0.3s, color 0.3s; /* Aggiunto per l'effetto hover */
-}
-
-.custom-navbar .nav-link:hover {
-    background-color: rgba(255, 255, 255, 0.3); /* Colore di sfondo su hover */
-    color: #ffffff; /* Colore del testo su hover */
-}
-
-.nav {
-    width: 100%;
-    margin: 0px auto;
-    padding: 16px;
-}
-
-#film h2 {
-    color: white; /* Imposta il testo del titolo "I FILM IN PROIEZIONE" in bianco */
-}
-
-.card {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    height: 400px; /* Imposta un'altezza fissa per le card */
-    cursor: pointer;
-    transition: transform 0.3s;
-    max-width: 500px; /* Aumenta la larghezza massima della card */
-    margin: auto;
-    background-color: #fff; /* Assicurati che la card abbia uno sfondo bianco */
-    overflow: hidden; /* Assicura che il contenuto non esca dalla card */
-}
-
-.card-title {
-    position: absolute; /* Posiziona il titolo sopra la card */
-    bottom: 10px; /* Spaziatura dal fondo della card */
-    left: 10px; /* Spaziatura a sinistra */
-    color: white; /* Colore del testo del titolo */
-    z-index: 2; /* Assicurati che il titolo sia sopra il gradiente */
-    font-size: 1.8rem; /* Aumenta la dimensione del font per il titolo */
-    font-weight: bold; /* Rende il titolo più in grassetto */
-}
-
-/* Modifica il gradiente per assicurarne la visibilità */
-.card::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 50%; /* Cambia l'altezza del gradiente in base alle tue preferenze */
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent); /* Usa un valore più chiaro per il gradiente */
-    z-index: 1; /* Mantieni il gradiente sotto i dettagli e i pulsanti */
-}
-
-.card:hover {
-    transform: scale(1.08);
-}
-
-.card-img-top {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    max-height: none;
-    z-index: 0; /* Assicurati che l'immagine sia sotto il gradiente */
-}
-
-.card-body {
-    flex-grow: 1;
-    position: relative; /* Imposta la posizione relativa per la sovrapposizione del contenuto */
-    z-index: 2; /* Assicurati che il contenuto della card sia sopra il gradiente */
-}
-
-.card-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    opacity: 0;
-    transition: opacity 0.3s;
-}
-
-.card:hover .card-overlay {
-    opacity: 1;
-}
-
-.card-details {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    font-size: 1.2rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: opacity 0.3s;
-    z-index: 3; /* Assicurati che i dettagli siano sopra il gradiente */
-
-.card:hover .card-details {
-    opacity: 1;
-}
-
-/* Pulsanti Dettagli, Modifica ed Elimina */
-.card-details a,
-.card-details button {
-    display: inline-block;
-    width: 100%;
-    max-width: 150px;
-    padding: 12px 0;
-    box-sizing: border-box;
-    border-radius: 4px;
-    text-align: center;
-    color: white;
-    font-size: 1rem;
-    font-weight: bold;
-    text-decoration: none;
-    margin: 5px 0;
-    z-index: 4; /* Assicurati che i pulsanti siano sopra il gradiente */
-}
-
-/* Stili specifici per ciascun pulsante */
-.btn-info {
-    background-color: #17a2b8;
-}
-
-.btn-warning {
-    background-color: #ffc107;
-}
-
-.btn-danger {
-    background-color: #dc3545;
-}
-
-.mb-4 {
-    margin-bottom: 2rem;
-}
-
-.mt-auto {
-    margin-top: auto;
-}
-
-.carousel {
-    margin-top: 0;
-}
-
-.overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(to right, rgba(0, 0, 0, 0.7) 20%, rgba(0, 0, 0, 0) 80%);
-    z-index: 1;
-}
-
-footer {
-    background-color: #E9E7E8;
-}
-
-#logo {
-    max-width: 25%;
-}
-
-/* Aggiungi la classe no-overlay per la card "Aggiungi Film" */
-.card.no-overlay::after {
-    content: none; /* Rimuove l'elemento pseudo per il gradiente */
+    border-radius: 30%;
 }
