@@ -25,19 +25,20 @@
             <div class="col-md-4">
                 <img id="logo" src="logo.png" style="position: absolute; border-radius: 30%;">
             </div>
-            <div th:if="${error != null}" class="alert alert-danger" role="alert" style="position: absolute; left: 43%">
-                Credenziali sbagliate. Riprova.
-            </div>
-            <div th:if="${errorSuggerimento != null}" class="alert alert-danger" role="alert" style="position: absolute; left: 35%">
-                Suggerimento già inserito per questa email, puoi inviarne solo uno all'anno.
-            </div>
-            <div th:if="${errorAdmin != null}" class="alert alert-danger" role="alert" style="position: absolute; left: 35%">
-                Esiste già un Admin con la stessa email inserita
-            </div>
-            <div th:if="${errorAccessoPagina != null}" class="alert alert-danger" role="alert" style="position: absolute; left: 35%">
+            <div class="errori">
+                <div th:if="${error != null}" class="errore alert alert-danger" role="alert">
+                    Credenziali sbagliate. Riprova.
+                </div>
+                <div th:if="${errorSuggerimento != null}" class="errore alert alert-danger" role="alert">
+                    Suggerimento già inserito per questa email, puoi inviarne solo uno all'anno.
+                </div>
+                <div th:if="${errorAdmin != null}" class="errore alert alert-danger" role="alert">
+                    Esiste già un Admin con la stessa email inserita
+                </div>
+                <div th:if="${errorAccessoPagina != null}" class="errore alert alert-danger" role="alert">
                     Non Hai i permessi per accedere alla pagina.
+                </div>
             </div>
-
             <div class="col-md-4 text-right">
                 <div th:if="${admin != null}">
                     <a href="/logout" class="text-white">Logout</a>
