@@ -35,8 +35,7 @@ public class SalaController {
     @GetMapping()
     public String gethome(Model model, HttpSession session,
                           @RequestParam(name = "error", required = false) String error,
-                          @RequestParam(name = "successo", required = false) String successo)
-    {
+                          @RequestParam(name = "successo", required = false) String successo) {
         List<Sala> sale = salaService.elencoSala();
         Admin admin = (Admin) session.getAttribute("admin");
         model.addAttribute("admin", admin);
@@ -53,11 +52,10 @@ public class SalaController {
                                @RequestParam("nomeSala") String nomeSala,
                                @RequestParam("fotoSala") MultipartFile fotoSala) {
 
-//        salaService.inserisciSala();
+        salaService.inserisciSala(citta, nomeSala, fotoSala);
 
-        return "redirect:/sale";
+        return "redirect:/sale?successo=Inserimento effettuato con successo";
     }
-
 
 
     @GetMapping("/eliminaSala")
