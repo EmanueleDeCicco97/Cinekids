@@ -136,7 +136,7 @@
                     <div class="card-details">
                         <a th:href="@{/dettaglio(id=${film.id})}" class="btn btn-info mb-2" style="margin-right: 20px; margin-left: 20px">Dettagli</a>
                         <div th:if="${admin != null}">
-                            <a th:href="@{/modificaFilm(id=${film.id})}" class="btn btn-warning mb-2">Modifica</a>
+                            <a th:href="@{/film/modificaFilmPagina(id=${film.id})}" class="btn btn-warning mb-2">Modifica</a>
                             <button type="button" class="btn btn-danger mb-2" data-toggle="modal"
                                     data-target="#confermaEliminazioneModal"
                                     th:onclick="'setDeleteId(' + ${film.id} + ')'">Elimina</button>
@@ -147,7 +147,7 @@
 
             <div class="col-md-4 col-lg-3 col-6 mb-4" th:if="${admin != null}">
                 <div class="card h-100 d-flex align-items-center justify-content-center">
-                    <a th:href="@{/aggiungiFilm}"
+                    <a th:href="@{/film/aggiungiFilmPagina}"
                        class="btn d-flex flex-column align-items-center justify-content-center"
                        style="width: 100%; height: 100%; text-decoration: none;">
                         <span style="font-size: 5rem; color: #007bff;">+</span>
