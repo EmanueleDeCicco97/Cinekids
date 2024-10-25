@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aggiungi Sala</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="path/to/your/styles.css">
+</head>
+<body>
+
+
+<div class="container mt-5">
+    <h1>Aggiungi Sala</h1>
+    <form action="your_server_endpoint" method="POST" enctype="multipart/form-data"> 
+        <div class="form-group">
+            <label for="citta">Città:</label>
+            <input type="text" class="form-control" id="citta" name="citta" required>
+        </div>
+        <div class="form-group">
+            <label for="nome_sala">Nome Sala:</label>
+            <input type="text" class="form-control" id="nome_sala" name="nome_sala" required>
+        </div>
+        <div class="form-group">
+            <label for="foto_sala">Foto Sala:</label>
+            <input type="file" class="form-control-file" id="foto_sala" name="foto_sala" accept="image/*">
+        </div>
+        <button type="submit" class="btn btn-info">Aggiungi Sala</button>
+    </form>
+</div>
+
+<footer class="mt-5">
+    <div class="container">
+        <p class="text-center">&copy; 2024 La tua azienda. Tutti i diritti riservati.</p>
+    </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
