@@ -47,6 +47,23 @@ public class SalaController {
         return "sala";
     }
 
+    @GetMapping("/aggiungiSalaPagina")
+    public String getAggiungiSalaPagina(Model model, HttpSession session,
+                          @RequestParam(name = "error", required = false) String error,
+                          @RequestParam(name = "successo", required = false) String successo) {
+
+        Admin admin = (Admin) session.getAttribute("admin");
+        if (admin == null) {
+            return "redirect:/?error=Non Hai i permessi per accedere alla pagina.";
+        }
+        model.addAttribute("admin", admin);
+        model.addAttribute("error", error);
+        model.addAttribute("successo", successo);
+
+
+        return "aggiungi_sala";
+    }
+
     @PostMapping("/aggiungiSala")
     public String aggiungiSala(@RequestParam("citta") String citta,
                                @RequestParam("nomeSala") String nomeSala,
