@@ -30,7 +30,8 @@ public class HomeController {
     @GetMapping()
     public String gethome(Model model, @RequestParam(name = "error", required = false) String error, HttpSession session,
                           @RequestParam(name = "errorSuggerimento", required = false) String errorSuggerimento,
-                          @RequestParam(name = "errorAdmin", required = false) String errorAdmin) {
+                          @RequestParam(name = "errorAdmin", required = false) String errorAdmin,
+                          @RequestParam(name = "errorAccessoPagina", required = false) String errorAccessoPagina) {
 
         List<Film> films = filmService.elencoFilm();
         Admin admin = (Admin) session.getAttribute("admin");
@@ -39,6 +40,7 @@ public class HomeController {
         model.addAttribute("error", error);
         model.addAttribute("errorSuggerimento", errorSuggerimento);
         model.addAttribute("errorAdmin", errorAdmin);
+        model.addAttribute("errorAccessoPagina", errorAccessoPagina);
 
 
         return "homepage";

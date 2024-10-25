@@ -34,6 +34,10 @@
             <div th:if="${errorAdmin != null}" class="alert alert-danger" role="alert" style="position: absolute; left: 35%">
                 Esiste già un Admin con la stessa email inserita
             </div>
+            <div th:if="${errorAccessoPagina != null}" class="alert alert-danger" role="alert" style="position: absolute; left: 35%">
+                    Non Hai i permessi per accedere alla pagina.
+            </div>
+
             <div class="col-md-4 text-right">
                 <div th:if="${admin != null}">
                     <a href="/logout" class="text-white">Logout</a>

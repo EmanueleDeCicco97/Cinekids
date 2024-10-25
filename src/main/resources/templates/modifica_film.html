@@ -9,7 +9,8 @@
 <body>
 <div class="container my-5">
     <h1 class="text-center mb-4">Modifica il Film</h1>
-    <form id="filmForm" action="@{/film/modificaFilm(id=${film.id})}" method="POST" enctype="multipart/form-data">
+    <form id="filmForm" action="/film/modificaFilm" method="POST" enctype="multipart/form-data">
+        <input type="hidden" id="id" name="id" th:value="${film.id}">
         <!-- Campo Titolo -->
         <div class="mb-3">
             <label for="titolo" class="form-label">Titolo</label>
