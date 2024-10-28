@@ -47,8 +47,11 @@ body {
     left: 0;
     font-size: 1.25rem;
     font-weight: 700;
-    z-index: 1000000000000;
+    z-index: 20;
     width: 100%;
+}
+.modal {
+    z-index: 1050;
 }
 
 #presentazione,
