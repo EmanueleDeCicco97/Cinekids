@@ -277,8 +277,7 @@ body {
 }
 
 footer {
-    background-color: transparent;
-    border-top: 1px solid #ddd;
+    background-color: rgba(0, 0, 0, 0.5);
     color: white;
 }
 
