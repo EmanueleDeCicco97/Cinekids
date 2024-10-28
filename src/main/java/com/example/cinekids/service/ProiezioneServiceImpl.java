@@ -60,7 +60,13 @@ public class ProiezioneServiceImpl implements ProiezioneService {
         film.setRegista(regista);
         film.setAnnoDiUscita(annoDiUscita);
         film.setSinossi(sinossi);
-        film.setTrailer(trailer);
+
+        if (trailer.trim().isEmpty()) {
+            film.setTrailer(null);
+        } else {
+            film.setTrailer(trailer);
+        }
+
         filmService.insericiFilm(film, locandina);
 
         // recupero tutte le sale
