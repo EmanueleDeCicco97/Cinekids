@@ -2,6 +2,7 @@ body {
     font-family: "Cairo", sans-serif;
     margin: 0; /* Rimuove margini dal body */
     overflow-x: hidden;
+    background: radial-gradient(circle, rgba(11, 59, 111, 0.66) 59%, rgb(0, 0, 0) 100%) !important;
 }
 
 .risutati {
@@ -133,6 +134,7 @@ body {
     transition: transform 0.3s;
     max-width: 400px;
     margin: auto;
+    border: none;
 }
 
 .card:hover {
@@ -275,17 +277,18 @@ body {
 }
 
 footer {
-    background-color: #f8f9fa; /* Sfondo chiaro per un contrasto sobrio */
+    background-color: transparent;
     border-top: 1px solid #ddd;
+    color: white;
 }
 
 footer p {
     margin: 0; /* Rimuovi margini extra */
-    color: #343a40;
+    color: white;
 }
 
 footer a {
-    color: #343a40;
+    color: white;
     font-weight: 500;
     text-decoration: none;
     transition: color 0.3s ease;
