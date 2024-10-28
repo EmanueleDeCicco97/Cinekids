@@ -29,11 +29,9 @@
                 <div th:if="${successo != null}" th:text="${successo}" class="alert-success successo" role="alert"></div>
             </div>
 
-            <div class="col-md-4 text-right">
-                <div th:if="${admin != null}">
-                    <a href="/logout" class="text-white">Logout</a>
-                </div>
-                <div th:if="${admin != null}">
+            <div class="col-md-4 text-right" >
+                <div th:if="${admin != null}" style="position: absolute; width: 550px; padding-top: 50px">
+                    <a href="/logout" class="text-white">Logout</a><br>
                     <a href="#" class="text-white" data-toggle="modal" data-target="#aggiungiAdminModal">Aggiungi admin</a>
                 </div>
                 <div th:if="${admin == null}">
