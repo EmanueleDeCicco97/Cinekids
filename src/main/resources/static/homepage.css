@@ -24,6 +24,14 @@ body {
     border: 2px solid white;
 }
 
+.carousel-item {
+    transition: transform 1s ease; /* Durata dello scorrimento */
+}
+
+.slide-in {
+    transform: translateX(0);
+}
+
 .successo {
     text-align: center;
     position: absolute;
