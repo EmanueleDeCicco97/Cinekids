@@ -1,22 +1,119 @@
+body {
+    height: 100vh; /* Altezza minima per riempire la finestra */
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    width: 100%;
+    font-family: 'Bahnschrift', sans-serif;
+    background: radial-gradient(circle, rgba(11, 59, 111, 0.66) 59%, rgb(0, 0, 0) 100%) !important;
+}
+
+.container {
+    flex: 1; /* Permette alla container di occupare tutto lo spazio disponibile */
+}
+
+.navbar {
+    background: radial-gradient(circle, rgb(11, 59, 111) 59%, rgb(0, 0, 0) 100%) !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    font-size: 1.35rem;
+    font-weight: 700;
+    z-index: 20;
+    width: 100%;
+    max-width: 100%; /* Assicura che la navbar non superi la larghezza della sezione */
+    margin: auto; /* Centra la navbar */
+}
+
+.navbar a {
+    cursor: pointer;
+}
+
+.modal {
+    z-index: 1050;
+}
+
+h2,h1, label {
+    color: lightgray !important;
+}
+
+.custom-navbar {
+    background-color: rgba(0, 0, 0, 0.75) !important;
+    margin-bottom: 0;
+}
+
+.navbar-nav .nav-link {
+    color: lightgray !important; /* Colore del testo */
+}
+
+.nav {
+    width: 100%;
+    margin: 0 auto; /* Centralizza il contenuto */
+    padding: 16px;
+}
+
+.pulsante-dettagli {
+    max-width: 500px; /* Larghezza massima aumentata per il pulsante Dettagli */
+}
+
+/* Stili specifici per ciascun pulsante */
+.btn-info {
+    background-color: #17a2b8;
+}
+
+.btn-warning {
+    background-color: #ffc107;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+}
+
+.mb-4 {
+    margin-bottom: 2rem;
+}
+
+.mt-auto {
+    margin-top: auto;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.7) 20%, rgba(0, 0, 0, 0) 80%);
+    z-index: 1;
+}
+
+#logo {
+    max-width: 25%;
+    border-radius: 30%;
+}
+
 footer {
-    background-color: #f8f9fa;
-    border-top: 1px solid #ddd;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 20px;
+    text-align: center;
+    margin-top: auto; /* Spinge il footer in fondo alla pagina */
 }
 
 footer p {
     margin: 0;
-    color: #343a40;
+    color: white;
 }
 
 footer a {
-    color: #343a40;
+    color: white;
     font-weight: 500;
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 footer a:hover {
-    color: #0d6efd;
+    color: #007bff; /* Colore per l'hover sui link */
 }
 
 footer .font-weight-bold {
@@ -26,11 +123,8 @@ footer .font-weight-bold {
 footer .fab {
     font-size: 1.2rem;
 }
-.form-group {
-    margin-bottom: 1.5rem;
-}
 
-.container h1 {
-    margin-bottom: 2rem;
+li {
+    padding-left: 5px;
+    padding-right: 5px;
 }
-
