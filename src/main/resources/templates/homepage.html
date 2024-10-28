@@ -10,6 +10,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
+<div class="risultati">
+    <div th:if="${error != null}" th:text="${error}" class="alert-danger errore" role="alert"></div>
+    <div th:if="${successo != null}" th:text="${successo}" class="alert-success successo" role="alert"></div>
+</div>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
     <div class="container">
@@ -45,8 +49,6 @@
         </div>
     </div>
 </nav>
-
-
 
 <section id="presentazione" class="bg-light">
     <div class="container-fluid text-center" style="margin-top: 0px">
@@ -94,9 +96,6 @@
 </section>
 
 
-
-
-
 <section id="film" class="py-5 bg-light">
     <div class="container">
         <h2 class="text-center mb-5">I FILM IN PROIEZIONE</h2>
@@ -133,7 +132,6 @@
         </div>
     </div>
 </section>
-
 
 
 
