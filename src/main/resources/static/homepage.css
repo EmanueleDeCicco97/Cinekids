@@ -5,9 +5,9 @@ body {
     background: radial-gradient(circle, rgba(11, 59, 111, 0.66) 59%, rgb(0, 0, 0) 100%) !important;
 }
 
-.risutati {
-    position: relative;
-}
+/*.risultati {*/
+/*    position: relative;*/
+/*}*/
 
 .errore, .successo {
     text-align: center;

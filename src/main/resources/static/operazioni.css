@@ -12,6 +12,10 @@ body {
     flex: 1; /* Permette alla container di occupare tutto lo spazio disponibile */
 }
 
+/*.risultati {*/
+/*    position: relative;*/
+/*}*/
+
 .navbar {
     background: radial-gradient(circle, rgb(11, 59, 111) 59%, rgb(0, 0, 0) 100%) !important;
     position: fixed;
