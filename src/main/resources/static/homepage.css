@@ -183,6 +183,26 @@ body {
     opacity: 1;
 }
 
+/* Modifiche per mostrare il titolo in basso con ombra */
+.card-title {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    font-size: 1.1rem;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+/* Mostra il titolo e la scuritura al passaggio del mouse */
+.card:hover .card-title {
+    opacity: 1;
+}
+
+
 /* Pulsanti Dettagli, Modifica ed Elimina */
 .card-details a,
 .card-details button {
