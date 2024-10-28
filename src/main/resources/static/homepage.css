@@ -268,3 +268,8 @@ footer {
     max-width: 25%;
     border-radius: 30%;
 }
+
+li {
+    padding-left: 5px;
+    padding-right: 5px;
+}
