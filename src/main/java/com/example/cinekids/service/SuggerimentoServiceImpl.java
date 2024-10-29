@@ -61,19 +61,26 @@ public class SuggerimentoServiceImpl implements SuggerimentoService {
     public Set<Suggerimento> titoliPiuSuggeriti() {
         List<Suggerimento> suggerimenti = elencoSuggerimento();
 
-        // mappo per contare le occorrenze di ciascun titolo
-        Map<String, Long> occorrenzeMap = suggerimenti.stream()
-                .collect(Collectors.groupingBy(Suggerimento::getTitoloFilm, Collectors.counting()));
+        // Mappa per contare le occorrenze e un set per i titoli unici
+        Map<String, Long> occorrenzeMap = new HashMap<>();
+        Set<Suggerimento> risultatiFinali = new LinkedHashSet<>();
 
-        // creo una lista di Suggerimento con occorrenze ordinate per conteggio
-        return suggerimenti.stream() // rimuovo i duplicati di suggerimento con lo stesso titolo
-                .sorted(Comparator.comparing(
-                        suggerimento -> occorrenzeMap.getOrDefault(suggerimento.getTitoloFilm(), 0L), Comparator.reverseOrder()
-                ))
+        for (Suggerimento suggerimento : suggerimenti) {
+            String titoloLower = suggerimento.getTitoloFilm().toLowerCase();
+
+            // Contare le occorrenze
+            occorrenzeMap.put(titoloLower, occorrenzeMap.getOrDefault(titoloLower, 0L) + 1);
+
+            // Aggiungere solo un suggerimento per titolo unico
+            if (risultatiFinali.stream().noneMatch(s -> s.getTitoloFilm().equalsIgnoreCase(suggerimento.getTitoloFilm()))) {
+                risultatiFinali.add(suggerimento);
+            }
+        }
+
+        // Ordinare i risultati in base alle occorrenze
+        return risultatiFinali.stream()
+                .sorted(Comparator.comparing(s -> occorrenzeMap.get(s.getTitoloFilm().toLowerCase()), Comparator.reverseOrder()))
                 .collect(Collectors.toCollection(LinkedHashSet::new));
     }
-
-
-
 
 }
