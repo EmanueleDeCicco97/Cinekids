@@ -36,7 +36,7 @@ public class DettaglioController {
                                          @RequestParam(name = "error", required = false) String error,
                                          @RequestParam(name = "successo", required = false) String successo) {
 
-        List<Suggerimento> filmSuggeriti = suggerimentoService.titoliPiuSuggeriti();
+        Set<Suggerimento> filmSuggeriti = suggerimentoService.titoliPiuSuggeriti();
         Admin admin = (Admin) session.getAttribute("admin");
         model.addAttribute("admin", admin);
         model.addAttribute("error", error);

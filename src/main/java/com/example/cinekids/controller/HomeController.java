@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/")
@@ -32,7 +33,7 @@ public class HomeController {
                           @RequestParam(name = "successo", required = false) String successo) {
 
         List<Film> films = filmService.elencoFilm();
-        List<Suggerimento> filmSuggeriti = suggerimentoService.titoliPiuSuggeriti();
+        Set<Suggerimento> filmSuggeriti = suggerimentoService.titoliPiuSuggeriti();
         Admin admin = (Admin) session.getAttribute("admin");
         model.addAttribute("admin", admin);
         model.addAttribute("films", films);

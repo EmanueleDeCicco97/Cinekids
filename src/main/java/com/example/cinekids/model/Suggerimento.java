@@ -57,10 +57,7 @@ public class Suggerimento {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Suggerimento)) return false;
-        Suggerimento that = (Suggerimento) o;
-        return Objects.equals(titoloFilm, that.titoloFilm);
+        return o instanceof Suggerimento && Objects.equals(titoloFilm, ((Suggerimento) o).titoloFilm);
     }
 
     @Override

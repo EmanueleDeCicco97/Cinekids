@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/film")
@@ -38,7 +39,7 @@ public class FilmController {
         }
 
         model.addAttribute("admin", admin);
-        List<Suggerimento> filmSuggeriti = suggerimentoService.titoliPiuSuggeriti();
+        Set<Suggerimento> filmSuggeriti = suggerimentoService.titoliPiuSuggeriti();
         model.addAttribute("filmSuggeriti", filmSuggeriti);
         // Recupera i dettagli del film
         Film film = filmService.dettaglioFilm(idFilm);
@@ -81,7 +82,7 @@ public class FilmController {
         if (admin == null) {
             return "redirect:/?error=Non Hai i permessi per accedere alla pagina.";
         }
-        List<Suggerimento> filmSuggeriti = suggerimentoService.titoliPiuSuggeriti();
+        Set<Suggerimento> filmSuggeriti = suggerimentoService.titoliPiuSuggeriti();
         model.addAttribute("admin", admin);
         model.addAttribute("error", error);
         model.addAttribute("filmSuggeriti", filmSuggeriti);

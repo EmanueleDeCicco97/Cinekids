@@ -58,25 +58,22 @@ public class SuggerimentoServiceImpl implements SuggerimentoService {
 
 
     @Override
-    public List<Suggerimento> titoliPiuSuggeriti() {
-        List<Suggerimento> titoliSuggeriti = elencoSuggerimento();
+    public Set<Suggerimento> titoliPiuSuggeriti() {
+        List<Suggerimento> suggerimenti = elencoSuggerimento();
 
-        // Raggruppa i suggerimenti per titolo e conta quante volte appare ciascun titolo
-        Map<String, Long> conteggi = titoliSuggeriti.stream()
-                .collect(Collectors.groupingBy(
-                        Suggerimento::getTitoloFilm,  // Gruppo per titolo
-                        Collectors.counting()          // Conta quante volte appare ciascun titolo
-                ));
+        // mappo per contare le occorrenze di ciascun titolo
+        Map<String, Long> occorrenzeMap = suggerimenti.stream()
+                .collect(Collectors.groupingBy(Suggerimento::getTitoloFilm, Collectors.counting()));
 
-        // Crea una lista di suggerimenti ordinati per conteggio
-        return conteggi.entrySet().stream()
-                .sorted(Map.Entry.<String, Long>comparingByValue().reversed()) // Ordina per conteggio decrescente
-                .map(entry -> titoliSuggeriti.stream()
-                        .filter(s -> s.getTitoloFilm().equalsIgnoreCase(entry.getKey()))
-                        .findFirst() // Prende il primo suggerimento corrispondente
-                        .orElse(null)) // Se non esiste, restituisce null
-                .filter(Objects::nonNull) // Filtra i valori null
-                .collect(Collectors.toList()); // Ritorna la lista di suggerimenti ordinati
+        // creo una lista di Suggerimento con occorrenze ordinate per conteggio
+        return suggerimenti.stream() // rimuovo i duplicati di suggerimento con lo stesso titolo
+                .sorted(Comparator.comparing(
+                        suggerimento -> occorrenzeMap.getOrDefault(suggerimento.getTitoloFilm(), 0L), Comparator.reverseOrder()
+                ))
+                .collect(Collectors.toCollection(LinkedHashSet::new));
     }
+
+
+
 
 }

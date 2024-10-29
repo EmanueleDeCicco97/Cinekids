@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/sale")
@@ -39,7 +40,7 @@ public class SalaController {
 
         List<Sala> sale = salaService.elencoSala();
         Admin admin = (Admin) session.getAttribute("admin");
-        List<Suggerimento> filmSuggeriti = suggerimentoService.titoliPiuSuggeriti();
+        Set<Suggerimento> filmSuggeriti = suggerimentoService.titoliPiuSuggeriti();
         model.addAttribute("admin", admin);
         model.addAttribute("sale", sale);
         model.addAttribute("error", error);
@@ -59,7 +60,7 @@ public class SalaController {
         if (admin == null) {
             return "redirect:/?error=Non Hai i permessi per accedere alla pagina.";
         }
-        List<Suggerimento> filmSuggeriti = suggerimentoService.titoliPiuSuggeriti();
+        Set<Suggerimento> filmSuggeriti = suggerimentoService.titoliPiuSuggeriti();
         model.addAttribute("admin", admin);
         model.addAttribute("error", error);
         model.addAttribute("successo", successo);
