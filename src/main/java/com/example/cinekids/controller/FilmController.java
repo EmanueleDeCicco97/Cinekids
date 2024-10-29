@@ -2,8 +2,10 @@ package com.example.cinekids.controller;
 
 import com.example.cinekids.model.Admin;
 import com.example.cinekids.model.Film;
+import com.example.cinekids.model.Suggerimento;
 import com.example.cinekids.service.FilmService;
 import com.example.cinekids.service.ProiezioneService;
+import com.example.cinekids.service.SuggerimentoService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Controller
 @RequestMapping("/film")
@@ -22,6 +25,8 @@ public class FilmController {
     private FilmService filmService;
     @Autowired
     private ProiezioneService proiezioneService;
+    @Autowired
+    private SuggerimentoService suggerimentoService;
 
     @GetMapping("/modificaFilmPagina")
     public String modificaFilmPagina(Model model, HttpSession session,@RequestParam(name = "id") int idFilm) {
@@ -33,6 +38,8 @@ public class FilmController {
         }
 
         model.addAttribute("admin", admin);
+        List<Suggerimento> filmSuggeriti = suggerimentoService.titoliPiuSuggeriti();
+        model.addAttribute("filmSuggeriti", filmSuggeriti);
         // Recupera i dettagli del film
         Film film = filmService.dettaglioFilm(idFilm);
         model.addAttribute("film", film);
@@ -69,12 +76,15 @@ public class FilmController {
     public String aggiungiFilmPagina(Model model, HttpSession session,
                                      @RequestParam(name = "error", required = false) String error) {
 
+
         Admin admin = (Admin) session.getAttribute("admin");
         if (admin == null) {
             return "redirect:/?error=Non Hai i permessi per accedere alla pagina.";
         }
+        List<Suggerimento> filmSuggeriti = suggerimentoService.titoliPiuSuggeriti();
         model.addAttribute("admin", admin);
         model.addAttribute("error", error);
+        model.addAttribute("filmSuggeriti", filmSuggeriti);
 
 
         return "aggiungi_film";

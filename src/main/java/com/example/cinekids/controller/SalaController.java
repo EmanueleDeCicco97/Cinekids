@@ -36,12 +36,15 @@ public class SalaController {
     public String gethome(Model model, HttpSession session,
                           @RequestParam(name = "error", required = false) String error,
                           @RequestParam(name = "successo", required = false) String successo) {
+
         List<Sala> sale = salaService.elencoSala();
         Admin admin = (Admin) session.getAttribute("admin");
+        List<Suggerimento> filmSuggeriti = suggerimentoService.titoliPiuSuggeriti();
         model.addAttribute("admin", admin);
         model.addAttribute("sale", sale);
         model.addAttribute("error", error);
         model.addAttribute("successo", successo);
+        model.addAttribute("filmSuggeriti", filmSuggeriti);
 
 
         return "sala";
@@ -56,9 +59,11 @@ public class SalaController {
         if (admin == null) {
             return "redirect:/?error=Non Hai i permessi per accedere alla pagina.";
         }
+        List<Suggerimento> filmSuggeriti = suggerimentoService.titoliPiuSuggeriti();
         model.addAttribute("admin", admin);
         model.addAttribute("error", error);
         model.addAttribute("successo", successo);
+        model.addAttribute("filmSuggeriti", filmSuggeriti);
 
 
         return "aggiungi_sala";

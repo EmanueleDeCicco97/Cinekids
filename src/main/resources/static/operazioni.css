@@ -27,14 +27,17 @@ body {
     width: 100%;
     max-width: 100%; /* Assicura che la navbar non superi la larghezza della sezione */
     margin: auto; /* Centra la navbar */
+    list-style-type: none;
 }
-
 .navbar a {
     cursor: pointer;
 }
 
 .modal {
     z-index: 1050;
+}
+.dropdown-menu, dropdown-item, dropdown-toggle {
+    z-index: 25;
 }
 
 h2,h1, label {

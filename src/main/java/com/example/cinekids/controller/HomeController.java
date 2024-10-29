@@ -32,9 +32,11 @@ public class HomeController {
                           @RequestParam(name = "successo", required = false) String successo) {
 
         List<Film> films = filmService.elencoFilm();
+        List<Suggerimento> filmSuggeriti = suggerimentoService.titoliPiuSuggeriti();
         Admin admin = (Admin) session.getAttribute("admin");
         model.addAttribute("admin", admin);
         model.addAttribute("films", films);
+        model.addAttribute("filmSuggeriti", filmSuggeriti);
         model.addAttribute("error", error);
         model.addAttribute("successo", successo);
 

@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="1° Festival Cinekids - Proiezione di celebri pellicole con protagonisti bambini e ragazzi">
+    <meta name="description"
+          content="1° Festival Cinekids - Proiezione di celebri pellicole con protagonisti bambini e ragazzi">
     <title>Festival Cinekids</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="homepage.css">
@@ -30,8 +31,27 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/sale">SALE</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" data-toggle="modal" data-target="#suggerisciFilmModal">PROPONI FILM</a>
+                    <li class="nav-item" th:if="${admin == null}">
+                        <a class="nav-link" href="#" data-toggle="modal" data-target="#suggerisciFilmModal">PROPONI
+                            FILM</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="suggerimentiDropdown" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            FILM PIÙ SUGGERITI
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="suggerimentiDropdown">
+                            <div th:each="suggerimento, iterStat : ${filmSuggeriti}"
+                                 th:if="${iterStat.index < 5}">
+                                <a class="dropdown-item drop"
+                                   th:text="${iterStat.index + 1} + '. ' + ${suggerimento.titoloFilm}"></a>
+                            </div>
+                            <a class="dropdown-item drop"
+                               th:if="${filmSuggeriti == null || #lists.isEmpty(filmSuggeriti)}" href="#" tabindex="-1"
+                               aria-disabled="true">
+                                Nessun suggerimento disponibile.
+                            </a>
+                        </div>
                     </li>
                 </ul>
             </div>
@@ -71,7 +91,8 @@
                     <div class="overlay"></div> <!-- Overlay aggiunto -->
                     <div class="carousel-caption d-none d-md-block">
                         <h5>Il Festival Cinekids</h5>
-                        <p>Le proiezioni avvengono in sale selezionate sul territorio nazionale. Scopri la sala più vicina a te!</p>
+                        <p>Le proiezioni avvengono in sale selezionate sul territorio nazionale. Scopri la sala più
+                            vicina a te!</p>
                     </div>
                 </div>
                 <div class="carousel-item">
@@ -107,12 +128,14 @@
                          th:alt="${film.titolo}">
                     <div class="card-overlay"></div>
                     <div class="card-details">
-                        <a th:href="@{/dettaglio(id=${film.id})}" class="btn btn-info mb-2" style="margin-right: 20px; margin-left: 20px">Dettagli</a>
+                        <a th:href="@{/dettaglio(id=${film.id})}" class="btn btn-info mb-2"
+                           style="margin-right: 20px; margin-left: 20px">Dettagli</a>
                         <div th:if="${admin != null}">
                             <a th:href="@{/film/modificaFilmPagina(id=${film.id})}" class="btn btn-warning mb-2">Modifica</a>
                             <button type="button" class="btn btn-danger mb-2" data-toggle="modal"
                                     data-target="#confermaEliminazioneModal"
-                                    th:onclick="'setDeleteId(' + ${film.id} + ')'">Elimina</button>
+                                    th:onclick="'setDeleteId(' + ${film.id} + ')'">Elimina
+                            </button>
                         </div>
                     </div>
                     <div class="card-title" th:text="${film.titolo}"></div> <!-- Titolo del film -->
@@ -120,7 +143,8 @@
             </div>
 
             <div class="col-md-4 col-lg-3 col-6 mb-4" th:if="${admin != null}">
-                <div class="card h-100 d-flex align-items-center justify-content-center no-overlay"> <!-- Aggiunta classe no-overlay -->
+                <div class="card h-100 d-flex align-items-center justify-content-center no-overlay">
+                    <!-- Aggiunta classe no-overlay -->
                     <a th:href="@{/film/aggiungiFilmPagina}"
                        class="btn d-flex flex-column align-items-center justify-content-center"
                        style="width: 100%; height: 100%; text-decoration: none;">
@@ -132,7 +156,6 @@
         </div>
     </div>
 </section>
-
 
 
 <div class="modal fade" id="adminModal" tabindex="-1" aria-labelledby="adminModalLabel" aria-hidden="true">
@@ -179,7 +202,8 @@
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <input type="password" class="form-control" id="passwordAdminNuovo" name="passwordAdminNuovo" required>
+                        <input type="password" class="form-control" id="passwordAdminNuovo" name="passwordAdminNuovo"
+                               required>
                     </div>
                     <button type="submit" class="btn btn-primary">Registra</button>
                 </form>
@@ -189,7 +213,8 @@
 </div>
 
 
-<div class="modal fade" id="suggerisciFilmModal" tabindex="-1" aria-labelledby="suggerisciFilmModalLabel" aria-hidden="true">
+<div class="modal fade" id="suggerisciFilmModal" tabindex="-1" aria-labelledby="suggerisciFilmModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -206,7 +231,8 @@
                     </div>
                     <div class="form-group">
                         <label for="email_suggerimento">La tua Email</label>
-                        <input type="email" class="form-control" id="email_suggerimento" name="emailSuggerimento" required>
+                        <input type="email" class="form-control" id="email_suggerimento" name="emailSuggerimento"
+                               required>
                     </div>
                     <button type="submit" class="btn btn-primary">Invia Suggerimento</button>
                 </form>
@@ -216,7 +242,8 @@
 </div>
 
 
-<div class="modal fade" id="confermaEliminazioneModal" tabindex="-1" aria-labelledby="confermaEliminazioneModalLabel" aria-hidden="true">
+<div class="modal fade" id="confermaEliminazioneModal" tabindex="-1" aria-labelledby="confermaEliminazioneModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -270,12 +297,12 @@
     }
 </script>
 <script>
-    $(document).ready(function(){
+    $(document).ready(function () {
         $('#carouselPresentazione').on('slide.bs.carousel', function () {
-            $('.carousel-item').each(function() {
+            $('.carousel-item').each(function () {
                 var $this = $(this);
                 $this.addClass('slide-in');
-                setTimeout(function() {
+                setTimeout(function () {
                     $this.removeClass('slide-in');
                 }, 1000); // Durata dello scorrimento
             });
@@ -285,7 +312,7 @@
 
 <script>
     // aspetta che la pagina sia completamente caricata
-    document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", function () {
 
         const errore = document.querySelector(".errore");
         const successo = document.querySelector(".successo");
@@ -294,13 +321,13 @@
         if (errore) {
             setTimeout(() => {
                 errore.style.display = "none";
-            }, 5000);
+            }, 3000);
         }
 
         if (successo) {
             setTimeout(() => {
                 successo.style.display = "none";
-            }, 5000);
+            }, 3000);
         }
     });
 </script>

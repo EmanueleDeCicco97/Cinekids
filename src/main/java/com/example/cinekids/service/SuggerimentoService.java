@@ -13,4 +13,6 @@ public interface SuggerimentoService {
 
     public void eliminaSuggerimento(int idSuggerimento);
 
+    public List<Suggerimento> titoliPiuSuggeriti();
+
 }

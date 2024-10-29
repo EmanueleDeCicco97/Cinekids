@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="1° Festival Cinekids - Proiezione di celebri pellicole con protagonisti bambini e ragazzi">
+    <meta name="description"
+          content="1° Festival Cinekids - Proiezione di celebri pellicole con protagonisti bambini e ragazzi">
     <title>Festival Cinekids</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="dettaglio.css">
@@ -31,8 +32,27 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/sale">SALE</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" data-toggle="modal" data-target="#suggerisciFilmModal">PROPONI FILM</a>
+                    <li class="nav-item" th:if="${admin == null}">
+                        <a class="nav-link" href="#" data-toggle="modal" data-target="#suggerisciFilmModal">PROPONI
+                            FILM</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="suggerimentiDropdown" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            FILM PIÙ SUGGERITI
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="suggerimentiDropdown">
+                            <div th:each="suggerimento, iterStat : ${filmSuggeriti}"
+                                 th:if="${iterStat.index < 5}">
+                                <a class="dropdown-item drop"
+                                   th:text="${iterStat.index + 1} + '. ' + ${suggerimento.titoloFilm}"></a>
+                            </div>
+                            <a class="dropdown-item drop"
+                               th:if="${filmSuggeriti == null || #lists.isEmpty(filmSuggeriti)}" href="#" tabindex="-1"
+                               aria-disabled="true">
+                                Nessun suggerimento disponibile.
+                            </a>
+                        </div>
                     </li>
                 </ul>
             </div>
@@ -51,42 +71,46 @@
     </div>
 </nav>
 <section id="presentazione" class="bg-light">
-<main class="card p-3">
-    <div class="card-content d-flex">
-        <div class="card-image flex-shrink-0">
-            <img th:src="@{${film.locandina == null ? 'markerImage.png' : film.locandina}}" class="card-img-left" alt="Locandina di [[${film.titolo}]]">
+    <main class="card p-3">
+        <div class="card-content d-flex">
+            <div class="card-image flex-shrink-0">
+                <img th:src="@{${film.locandina == null ? 'markerImage.png' : film.locandina}}" class="card-img-left"
+                     alt="Locandina di [[${film.titolo}]]">
+            </div>
+            <div class="card-details">
+                <h5 class="card-title" th:text="${film.titolo}">Titolo Film</h5>
+                <p><strong>Regista:</strong> <span th:text="${film.regista}">Nome Regista</span></p>
+                <p><strong>Genere:</strong> <span th:text="${film.genere}">Genere</span></p>
+                <p><strong>Anno di Uscita:</strong> <span th:text="${film.annoDiUscita}">Anno</span></p>
+                <p><strong>Trama:</strong> <span th:text="${film.sinossi}">Sinossi</span></p>
+            </div>
         </div>
-        <div class="card-details">
-            <h5 class="card-title" th:text="${film.titolo}">Titolo Film</h5>
-            <p><strong>Regista:</strong> <span th:text="${film.regista}">Nome Regista</span></p>
-            <p><strong>Genere:</strong> <span th:text="${film.genere}">Genere</span></p>
-            <p><strong>Anno di Uscita:</strong> <span th:text="${film.annoDiUscita}">Anno</span></p>
-            <p><strong>Trama:</strong> <span th:text="${film.sinossi}">Sinossi</span></p>
+        <div class="trailer-proiezioni mt-3">
+            <p><strong>Trailer:</strong></p>
+            <div class="iframe-container mb-3">
+                <iframe th:src="@{${film.trailer == null ? 'comingSoonTrailer.jpg' : film.trailer}}" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+            </div>
+            <p><strong>Proiezioni:</strong></p>
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Data e Ora</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="data : ${date}">
+                    <td th:text="${#temporals.format(data, 'dd/MM/yyyy HH:mm')}"></td>
+                </tr>
+                <tr>
+                    <td colspan="1" class="text-center">In tutte le sale presenti in Cinekids</td>
+                </tr>
+                </tbody>
+            </table>
         </div>
-    </div>
-    <div class="trailer-proiezioni mt-3">
-        <p><strong>Trailer:</strong></p>
-        <div class="iframe-container mb-3">
-            <iframe th:src="@{${film.trailer == null ? 'comingSoonTrailer.jpg' : film.trailer}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-        <p><strong>Proiezioni:</strong></p>
-        <table class="table table-bordered">
-            <thead>
-            <tr>
-                <th>Data e Ora</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="data : ${date}">
-                <td th:text="${#temporals.format(data, 'dd/MM/yyyy HH:mm')}"></td>
-            </tr>
-            <tr>
-                <td colspan="1" class="text-center">In tutte le sale presenti in Cinekids</td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-</main></section>
+    </main>
+</section>
 
 <div class="modal fade" id="adminModal" tabindex="-1" aria-labelledby="adminModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -98,7 +122,8 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="adminLoginForm" th:action="@{/login(redirectUrl=${'/dettaglio?id=' + film.id})}" method="POST">
+                <form id="adminLoginForm" th:action="@{/login(redirectUrl=${'/dettaglio?id=' + film.id})}"
+                      method="POST">
                     <div class="form-group">
                         <label for="email">Email</label>
                         <input type="email" class="form-control" id="email" name="email" required>
@@ -125,14 +150,16 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="aggiungiAdminForm" th:action="@{/register(redirectUrl=${'/dettaglio?id=' + film.id})}" method="POST">
+                <form id="aggiungiAdminForm" th:action="@{/register(redirectUrl=${'/dettaglio?id=' + film.id})}"
+                      method="POST">
                     <div class="form-group">
                         <label for="email">Email</label>
                         <input type="email" class="form-control" id="emailAdminNuovo" name="emailAdminNuovo" required>
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <input type="password" class="form-control" id="passwordAdminNuovo" name="passwordAdminNuovo" required>
+                        <input type="password" class="form-control" id="passwordAdminNuovo" name="passwordAdminNuovo"
+                               required>
                     </div>
                     <button type="submit" class="btn btn-primary">Registra</button>
                 </form>
@@ -152,14 +179,16 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="suggerisciFilmForm" th:action="@{/suggerimento(redirectUrl=${'/dettaglio?id=' + film.id})}" method="POST">
+                <form id="suggerisciFilmForm" th:action="@{/suggerimento(redirectUrl=${'/dettaglio?id=' + film.id})}"
+                      method="POST">
                     <div class="form-group">
                         <label for="titoloFilm">Titolo del Film</label>
                         <input type="text" class="form-control" id="titoloFilm" name="titoloFilm" required>
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" class="form-control" id="emailSuggerimento" name="emailSuggerimento" required>
+                        <input type="email" class="form-control" id="emailSuggerimento" name="emailSuggerimento"
+                               required>
                     </div>
                     <button type="submit" class="btn btn-primary">Invia Suggerimento</button>
                 </form>
@@ -196,7 +225,7 @@
 
 <script>
     // aspetta che la pagina sia completamente caricata
-    document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", function () {
 
         const errore = document.querySelector(".errore");
         const successo = document.querySelector(".successo");
@@ -205,13 +234,13 @@
         if (errore) {
             setTimeout(() => {
                 errore.style.display = "none";
-            }, 5000);
+            }, 3000);
         }
 
         if (successo) {
             setTimeout(() => {
                 successo.style.display = "none";
-            }, 5000);
+            }, 3000);
         }
     });
 </script>

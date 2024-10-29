@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Pattern;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Entity
 @Table(name = "suggerimenti")
@@ -52,5 +53,18 @@ public class Suggerimento {
 
     public void setDataInvio(LocalDateTime dataInvio) {
         this.dataInvio = dataInvio;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Suggerimento)) return false;
+        Suggerimento that = (Suggerimento) o;
+        return Objects.equals(titoloFilm, that.titoloFilm);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(titoloFilm);
     }
 }
