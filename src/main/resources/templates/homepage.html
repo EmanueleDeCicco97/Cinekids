@@ -38,7 +38,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown" href="#" id="suggerimentiDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            FILM PIÙ SUGGERITI
+                            FILM SUGGERITI
                         </a>
                         <div class="dropdown-menu" aria-labelledby="suggerimentiDropdown">
                             <div th:each="suggerimento, iterStat : ${filmSuggeriti}"
@@ -119,7 +119,7 @@
 
 <section id="film" class="py-5 bg-light">
     <div class="container">
-        <h2 class="text-center mb-5">I FILM IN PROIEZIONE</h2>
+        <h2 class="text-center mb-5">Film in Proiezione</h2>
         <div class="row justify-content-center">
             <div class="col-md-4 col-lg-3 col-6 mb-4" th:each="film : ${films}">
                 <div class="card h-100 text-decoration-none">

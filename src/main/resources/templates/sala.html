@@ -40,7 +40,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown" href="#" id="suggerimentiDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            FILM PIÙ SUGGERITI
+                            FILM SUGGERITI
                         </a>
                         <div class="dropdown-menu" aria-labelledby="suggerimentiDropdown">
                             <div th:each="suggerimento, iterStat : ${filmSuggeriti}"
@@ -71,7 +71,53 @@
         </div>
     </div>
 </nav>
-<br><br>
+
+<section id="presentazione" class="bg-light">
+    <div class="container-fluid text-center" style="margin-top: 0px">
+        <div id="carouselPresentazione" class="carousel slide mt-0" data-ride="carousel" data-interval="4000">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="deadpool.jpg" class="d-block w-100" alt="Film 1">
+                    <div class="overlay"></div> <!-- Overlay aggiunto -->
+                    <div class="carousel-caption d-none d-md-block">
+                        <h2>Benvenuti al Festival Cinekids!</h2>
+                        <p>Il Festival Cinekids è dedicato a 10 celebri film con protagonisti bambini e ragazzi, <br>
+                            proiettati nelle sale cinematografiche di tutta Italia.
+                            <br>
+                            Un'occasione unica per rivivere le emozioni di queste storie indimenticabili!
+                            </br></p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="wallpaper.jpg" class="d-block w-100" alt="Film 2">
+                    <div class="overlay"></div> <!-- Overlay aggiunto -->
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Il Festival Cinekids</h5>
+                        <p>Le proiezioni avvengono in sale selezionate sul territorio nazionale. Scopri la sala più
+                            vicina a te!</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="cinepresa2.jpg" class="d-block w-100" alt="Film 3">
+                    <div class="overlay"></div> <!-- Overlay aggiunto -->
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Il Festival Cinekids</h5>
+                        <p>Vivi l'emozione dei film con i tuoi personaggi preferiti!</p>
+                    </div>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselPresentazione" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Precedente</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselPresentazione" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Successivo</span>
+            </a>
+        </div>
+    </div>
+</section>
+
 
 <section id="sale" class="py-5 bg-light">
     <div class="container">
@@ -102,12 +148,12 @@
             </div>
 
             <div class="col-md-3 col-6 mb-4" th:if="${admin != null}">
-                <div class="card h-100 d-flex align-items-center justify-content-center">
+                <div class="card h-100 d-flex align-items-center justify-content-center" style="background-color: white">
                     <a th:href="@{/sale/aggiungiSalaPagina}"
                        class="btn d-flex flex-column align-items-center justify-content-center"
-                       style="width: 100%; height: 100%; text-decoration: none;">
-                        <span style="font-size: 5rem; color: #007bff;">+</span>
-                        <span style="font-size: 1.5rem; color: #007bff;">Aggiungi Sala</span>
+                       style="width: 100%; height: 100%; text-decoration: none; background-color: whitesmoke">
+                        <span style="font-size: 5rem; color: #007bff">+</span>
+                        <span style="font-size: 1.5rem; color: #007bff">Aggiungi Sala</span>
                     </a>
                 </div>
             </div>
