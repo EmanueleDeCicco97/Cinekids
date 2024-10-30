@@ -73,6 +73,9 @@ body {
     opacity: 1;
     transform: translateY(0);
 }
+ul li:hover {
+    text-shadow:  0 0 5px darkgray !important;
+}
 
 #presentazione,
 section {

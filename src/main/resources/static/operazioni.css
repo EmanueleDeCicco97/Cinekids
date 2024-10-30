@@ -39,6 +39,9 @@ body {
 .dropdown-menu, dropdown-item, dropdown-toggle {
     z-index: 25;
 }
+ul li:hover {
+    text-shadow:  0 0 5px darkgray !important;
+}
 .dropdown-menu {
     display: block;
     max-height: 0;

@@ -74,7 +74,9 @@ body {
     opacity: 1;
     transform: translateY(0);
 }
-
+ul li:hover {
+    text-shadow:  0 0 5px darkgray !important;
+}
 
 #sale {
     background: radial-gradient(circle, rgba(11, 59, 111, 0.66) 59%, rgb(0, 0, 0) 100%) !important;
