@@ -26,10 +26,11 @@ public class SalaServiceImpl implements SalaService {
     }
 
     @Override
-    public void inserisciSala(String citta, String nomeSala, MultipartFile fotoSala) {
+    public void inserisciSala(String citta, String nomeSala,String viaSala, MultipartFile fotoSala) {
         Sala sala = new Sala();
         sala.setCitta(citta);
         sala.setNomeSala(nomeSala);
+        sala.setViaSala(viaSala);
         if (fotoSala != null && !fotoSala.isEmpty()) {
             try {
                 String formato = fotoSala.getContentType();

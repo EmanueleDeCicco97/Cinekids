@@ -10,7 +10,7 @@ public interface SalaService {
 
     public List<Sala> elencoSala();
 
-    public void inserisciSala(String citta, String nome, MultipartFile fotoSala);
+    public void inserisciSala(String citta, String nome,  String viaSala, MultipartFile fotoSala);
 
     public void eliminaSala(int idSala);
 }

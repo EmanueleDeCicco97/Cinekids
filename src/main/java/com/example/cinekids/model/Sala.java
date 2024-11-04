@@ -17,8 +17,11 @@ public class Sala {
     @Column(name = "nome_sala", nullable = false)
     private String nomeSala;
 
-    @Column(name="foto_sala")
+    @Column(name = "foto_sala")
     private String fotoSala;
+
+    @Column(name = "via_sala")
+    private String viaSala;
 
     @OneToMany(mappedBy = "sala", cascade = CascadeType.ALL)
     private List<Proiezione> proiezioni;
@@ -53,6 +56,14 @@ public class Sala {
 
     public void setFotoSala(String fotoSala) {
         this.fotoSala = fotoSala;
+    }
+
+    public String getViaSala() {
+        return viaSala;
+    }
+
+    public void setViaSala(String viaSala) {
+        this.viaSala = viaSala;
     }
 
     public List<Proiezione> getProiezioni() {

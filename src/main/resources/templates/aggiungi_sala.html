@@ -60,12 +60,16 @@
     <h1 class="text-center mb-4" >Aggiungi Sala</h1><br>
     <form action="/sale/aggiungiSala" method="POST" enctype="multipart/form-data">
         <div class="mb-3">
+            <label for="nome_sala" class="form-label">Nome Sala:</label>
+            <input type="text" class="form-control" id="nome_sala" name="nomeSala" required>
+        </div>
+        <div class="mb-3">
             <label for="citta" class="form-label">Città:</label>
             <input type="text" class="form-control" id="citta" name="citta" required>
         </div>
         <div class="mb-3">
-            <label for="nome_sala" class="form-label">Nome Sala:</label>
-            <input type="text" class="form-control" id="nome_sala" name="nomeSala" required>
+            <label for="via" class="form-label">Via:</label>
+            <input type="text" class="form-control" id="via" name="viaSala" required>
         </div>
         <div class="mb-3">
             <label for="foto_sala" class="form-label">Foto Sala: (Max 1MB) </label>

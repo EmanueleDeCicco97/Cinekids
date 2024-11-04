@@ -73,9 +73,10 @@ public class SalaController {
     @PostMapping("/aggiungiSala")
     public String aggiungiSala(@RequestParam("citta") String citta,
                                @RequestParam("nomeSala") String nomeSala,
+                               @RequestParam("viaSala") String viaSala,
                                @RequestParam("fotoSala") MultipartFile fotoSala) {
 
-        salaService.inserisciSala(citta, nomeSala, fotoSala);
+        salaService.inserisciSala(citta, nomeSala, viaSala, fotoSala);
 
         return "redirect:/sale?successo=Inserimento effettuato con successo";
     }
