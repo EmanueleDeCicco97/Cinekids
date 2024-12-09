@@ -61,9 +61,7 @@ public class ProiezioneServiceImpl implements ProiezioneService {
         film.setAnnoDiUscita(annoDiUscita);
         film.setSinossi(sinossi);
 
-        if (trailer.trim().isEmpty()) {
-            film.setTrailer(null);
-        } else {
+        if (!trailer.trim().isEmpty()) {
             film.setTrailer(trailer);
         }
 
@@ -81,6 +79,5 @@ public class ProiezioneServiceImpl implements ProiezioneService {
             proiezioneDao.save(proiezione);
         }
     }
-
 
 }

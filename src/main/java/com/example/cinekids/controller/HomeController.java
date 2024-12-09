@@ -49,14 +49,13 @@ public class HomeController {
                         @RequestParam("email") String email,
                         @RequestParam("password") String password,
                         @RequestParam(name = "redirectUrl", defaultValue = "/") String redirectUrl) {
-        if (!adminService.loginUtente(email, password, session))
-            if (redirectUrl.contains("/dettaglio?id="))
-                return "redirect:" + redirectUrl + "&error=Credenziali sbagliate. Riprova.";
-            else
-                return "redirect:" + redirectUrl + "?error=Credenziali sbagliate. Riprova.";
-
+        if (!adminService.loginUtente(email, password, session)) {
+            String separatore = redirectUrl.contains("?") ? "&" : "?";
+            return "redirect:" + redirectUrl + separatore + "error=Credenziali sbagliate. Riprova.";
+        }
         return "redirect:" + redirectUrl;
     }
+
 
     @GetMapping("/logout")
     public String logoutAdmin(HttpSession session,
@@ -71,35 +70,28 @@ public class HomeController {
                                 @RequestParam("emailAdminNuovo") String email,
                                 @RequestParam("passwordAdminNuovo") String password,
                                 @RequestParam(name = "redirectUrl", defaultValue = "/") String redirectUrl) {
+        String messaggio = adminService.inserisciAdmin(email, password) ?
+                "successo=Inserimento avvenuto con successo!" :
+                "error=Esiste gia un Admin con la stessa email inserita";
 
-        if (adminService.inserisciAdmin(email, password))
-            if (redirectUrl.contains("/dettaglio?id="))
-                return "redirect:" + redirectUrl + "&error=Esiste gia un Admin con la stessa email inserita";
-            else
-                return "redirect:" + redirectUrl + "?error=Esiste gia un Admin con la stessa email inserita";
-
-        if (redirectUrl.contains("/dettaglio?id="))
-            return "redirect:" + redirectUrl + "&successo=Inserimento avvenuto con successo!";
-        else
-            return "redirect:" + redirectUrl + "?successo=Inserimento avvenuto con successo!";
+        String separatore = redirectUrl.contains("?") ? "&" : "?";
+        return "redirect:" + redirectUrl + separatore + messaggio;
     }
+
 
     @PostMapping("/suggerimento")
     public String aggiungiSuggerimento(HttpSession session,
                                        @RequestParam("titoloFilm") String titolo,
                                        @RequestParam("emailSuggerimento") String email,
                                        @RequestParam(name = "redirectUrl", defaultValue = "/") String redirectUrl) {
-        if (!suggerimentoService.inserisciSuggerimento(titolo, email))
-            if (redirectUrl.contains("/dettaglio?id="))
-                return "redirect:" + redirectUrl + "&error=Suggerimento gia inserito per questa email, puoi inviarne solo uno all'anno";
-            else
-                return "redirect:" + redirectUrl + "?error=Suggerimento gia inserito per questa email, puoi inviarne solo uno all'anno.";
+        String messaggio = suggerimentoService.inserisciSuggerimento(titolo, email) ?
+                "successo=Inserimento avvenuto con successo!" :
+                "error=Suggerimento gia inserito per questa email, puoi inviarne solo uno all'anno";
 
-        if (redirectUrl.contains("/dettaglio?id="))
-            return "redirect:" + redirectUrl + "&successo=Inserimento avvenuto con successo!";
-        else
-            return "redirect:" + redirectUrl + "?successo=Inserimento avvenuto con successo!";
+        String separatore = redirectUrl.contains("?") ? "&" : "?";
+        return "redirect:" + redirectUrl + separatore + messaggio;
     }
+
 
 }
 
