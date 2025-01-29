@@ -102,13 +102,6 @@ public class FilmController {
             @RequestParam("locandina") MultipartFile locandina,
             @RequestParam("dataOra") LocalDateTime dataOra) {
 
-        Film film = new Film();
-        film.setTitolo(titolo);
-        film.setGenere(genere);
-        film.setRegista(regista);
-        film.setAnnoDiUscita(annoDiUscita);
-        film.setSinossi(sinossi);
-        film.setTrailer(trailer);
 
         proiezioneService.creaProiezioniPerTutteLeSale(titolo, genere, regista, annoDiUscita, sinossi, trailer, locandina, dataOra);
 
