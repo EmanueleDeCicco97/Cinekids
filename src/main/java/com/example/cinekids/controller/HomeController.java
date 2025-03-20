@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Set;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/1")
 public class HomeController {
     @Autowired
     private FilmService filmService;
